@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+    <div class="container">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            Hi {{ app.user.username }}
+            check your data <a href="{{ path('filters') }}">here</a>
+            <a href="{{ path('fos_user_security_logout') }}">Logout</a>
+        {% else %}
+            Hi unknow! You can register <a href="{{ path('fos_user_registration_register') }}">here</a>
+            or login <a href="{{ path('fos_user_security_login') }}">here</a>
+        {% endif %}
+    </div>
+{% endblock %}

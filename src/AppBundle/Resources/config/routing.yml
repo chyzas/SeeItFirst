@@ -1,0 +1,22 @@
+sif_home_page:
+  path: /
+  defaults: { _controller: AppBundle:Default:index }
+
+filters:
+  path: /user/
+  defaults:
+      _controller: AppBundle:Default:filter
+  methods: [GET]
+
+delete_filter:
+  path: /user/delete/filter/{id}
+  defaults:
+        _controller: AppBundle:Default:delete
+
+create_filter:
+  path: /user/filter/create
+  defaults:
+        _controller: AppBundle:Default:create
+  methods: [GET]
+
+

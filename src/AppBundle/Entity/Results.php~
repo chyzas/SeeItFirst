@@ -1,0 +1,60 @@
+<?php
+
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="results")
+ */
+class Results
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_new", type="boolean", nullable=true)
+     */
+    protected $isNew;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="price", type="float", nullable=true)
+     */
+    protected $price;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=1000, nullable=true)
+     */
+    protected $url;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="text", nullable=true)
+     */
+    protected $title;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="added_on", type="date", nullable=true)
+     */
+    protected $addedOn;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Filter", inversedBy="results")
+     * @ORM\JoinColumn(name="filter_id", referencedColumnName="id")
+     **/
+    private $filter;
+}
