@@ -3,9 +3,12 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 /**
+ * @Assert\Callback(methods={"checkFilter"})
  * @ORM\Entity
  * @ORM\Table(name="filter")
  */
@@ -27,13 +30,15 @@ class Filter
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Site", inversedBy="filters")
      * @ORM\JoinColumn(name="site_id", referencedColumnName="id")
+     * @Assert\NotBlank()
      **/
     protected $site;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=1000, nullable=true)
+     * @ORM\Column(name="url", type="string", length=1000, nullable=false)
+     * @Assert\NotBlank()
      */
     protected $url;
 
@@ -157,5 +162,18 @@ class Filter
     public function getResults()
     {
         return $this->results;
+    }
+
+    public function checkFilter(ExecutionContextInterface $contextInterface)
+    {
+        $site = $this->getSite()->getSiteUrl();
+        $filterUrl = $this->getUrl();
+
+        if (!isset(parse_url($filterUrl)['host']) || parse_url($site)['host'] !== parse_url($filterUrl)['host']) {
+            $contextInterface
+                ->buildViolation('Please enter correct url filter.')
+                ->atPath('url')
+                ->addViolation();
+        }
     }
 }
