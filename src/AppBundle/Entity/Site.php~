@@ -35,10 +35,10 @@ class Site
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Filter", mappedBy="site")
      **/
-    protected $sites;
+    protected $filters;
 
     public function __construct()
     {
-        $this->sites = new ArrayCollection();
+        $this->filters = new ArrayCollection();
     }
 }

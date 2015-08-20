@@ -1,0 +1,20 @@
+filter:
+    path:     /
+    defaults: { _controller: "AppBundle:Filter:index" }
+
+filter_show:
+    path:     /{id}/show
+    defaults: { _controller: "AppBundle:Filter:show" }
+
+filter_new:
+    path:     /new
+    defaults: { _controller: "AppBundle:Filter:new" }
+
+filter_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Filter:create" }
+    methods:  [POST, GET]
+
+filter_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AppBundle:Filter:delete" }

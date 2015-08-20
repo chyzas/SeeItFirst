@@ -25,7 +25,7 @@ class Filter
     protected $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Site", inversedBy="sites")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Site", inversedBy="filters")
      * @ORM\JoinColumn(name="site_id", referencedColumnName="id")
      **/
     protected $site;

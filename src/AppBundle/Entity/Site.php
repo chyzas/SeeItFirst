@@ -35,11 +35,15 @@ class Site
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Filter", mappedBy="site")
      **/
-    protected $sites;
+    protected $filters;
 
     public function __construct()
     {
-        $this->sites = new ArrayCollection();
+        $this->filters = new ArrayCollection();
+    }
+
+    public function __toString() {
+        return $this->getName();
     }
 
     /**
@@ -99,35 +103,35 @@ class Site
     }
 
     /**
-     * Add sites
+     * Add filters
      *
-     * @param \AppBundle\Entity\Filter $sites
+     * @param \AppBundle\Entity\Filter $filters
      * @return Site
      */
-    public function addSite(\AppBundle\Entity\Filter $sites)
+    public function addFilter(\AppBundle\Entity\Filter $filters)
     {
-        $this->sites[] = $sites;
+        $this->filters[] = $filters;
 
         return $this;
     }
 
     /**
-     * Remove sites
+     * Remove filters
      *
-     * @param \AppBundle\Entity\Filter $sites
+     * @param \AppBundle\Entity\Filter $filters
      */
-    public function removeSite(\AppBundle\Entity\Filter $sites)
+    public function removeFilter(\AppBundle\Entity\Filter $filters)
     {
-        $this->sites->removeElement($sites);
+        $this->filters->removeElement($filters);
     }
 
     /**
-     * Get sites
+     * Get filters
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getSites()
+    public function getFilters()
     {
-        return $this->sites;
+        return $this->filters;
     }
 }
