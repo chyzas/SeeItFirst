@@ -48,7 +48,7 @@ class Results
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="added_on", type="date", nullable=true)
+     * @ORM\Column(name="added_on", type="datetime", nullable=true)
      */
     protected $addedOn;
 
