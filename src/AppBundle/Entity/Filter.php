@@ -43,6 +43,14 @@ class Filter
     protected $url;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="filter_name", type="string", nullable=false)
+     * @Assert\NotBlank()
+     */
+    protected $filterName;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Results", mappedBy="filter", cascade={"remove"})
      **/
     protected $results;
@@ -175,5 +183,28 @@ class Filter
                 ->atPath('url')
                 ->addViolation();
         }
+    }
+
+    /**
+     * Set filterName
+     *
+     * @param string $filterName
+     * @return Filter
+     */
+    public function setFilterName($filterName)
+    {
+        $this->filterName = $filterName;
+
+        return $this;
+    }
+
+    /**
+     * Get filterName
+     *
+     * @return string 
+     */
+    public function getFilterName()
+    {
+        return $this->filterName;
     }
 }

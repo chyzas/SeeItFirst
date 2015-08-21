@@ -16,6 +16,7 @@ class FilterType extends AbstractType
     {
         $builder
             ->add('site')
+            ->add('filterName')
             ->add('url')
         ;
     }
