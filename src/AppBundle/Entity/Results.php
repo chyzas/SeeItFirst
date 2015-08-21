@@ -34,7 +34,7 @@ class Results
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=1000, nullable=true)
+     * @ORM\Column(name="url", type="string", unique=true)
      */
     protected $url;
 
@@ -53,8 +53,8 @@ class Results
     protected $addedOn;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Filter", inversedBy="results")
-     * @ORM\JoinColumn(name="filter_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Filter", inversedBy="results", cascade={"persist"})
+     * @ORM\JoinColumn(name="filter_id", referencedColumnName="id", onDelete="SET NULL", nullable=true)
      **/
     private $filter;
 

@@ -43,7 +43,7 @@ class Filter
     protected $url;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Results", mappedBy="filter")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Results", mappedBy="filter", cascade={"remove"})
      **/
     protected $results;
 
