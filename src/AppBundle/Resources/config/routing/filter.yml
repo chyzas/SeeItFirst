@@ -18,3 +18,7 @@ filter_create:
 filter_delete:
     path:     /{id}/delete
     defaults: { _controller: "AppBundle:Filter:delete" }
+
+filter_results:
+  path:       /{id}/results
+  defaults:   { _controller: "AppBundle:Filter:results" }

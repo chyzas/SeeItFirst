@@ -124,4 +124,11 @@ class FilterController extends Controller
 
         return $this->redirectToRoute('filter');
     }
+
+    public function resultsAction($id)
+    {
+        $results = $this->getDoctrine()->getManager()->getRepository('AppBundle:Results')->findBy(['filter' => $id]);
+
+        return $this->render('AppBundle:Filter:results.html.twig', ['results' => $results]);
+    }
 }
