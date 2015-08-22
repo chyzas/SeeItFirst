@@ -27,7 +27,7 @@
                     {{ row.filterName }}
                 </th>
                 <th>
-                    {{ row.url }}
+                    <a href="{{ row.url }}" target="_blank">{{ row.url }}</a>
                 </th>
                 <th>
                     <a href="{{ path('filter_delete', {'id': row.id }) }}"><span class="glyphicon glyphicon-remove"></span></a>
