@@ -7,3 +7,17 @@ services:
           #this is the place where the properties are passed to the UserProvider - see config.yml
           arguments: [@fos_user.user_manager,{facebook: facebook_id}]
 
+     app.admin.user:
+         class: AppBundle\Admin\UserAdmin
+         arguments:
+             - ~
+             - AppBundle\Entity\User
+             - AppBundle:UserAdmin
+         tags:
+             - { name: sonata.admin, manager_type: orm, group: Admin, label: User }
+
+     app.admin.site:
+         class: AppBundle\Admin\SiteAdmin
+         arguments: [~, AppBundle\Entity\Site, AppBundle:SiteAdmin]
+         tags:
+             - {name: sonata.admin, manager_type: orm, group: Admin, label: Site}
