@@ -51,6 +51,20 @@ class Filter
     protected $filterName;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_at", type="datetime", nullable=false)
+     */
+    protected $createdAt;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=false)
+     */
+    protected $active;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Results", mappedBy="filter", cascade={"remove"})
      **/
     protected $results;
@@ -206,5 +220,37 @@ class Filter
     public function getFilterName()
     {
         return $this->filterName;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param bool $active
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
     }
 }

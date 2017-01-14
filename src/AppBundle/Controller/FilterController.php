@@ -39,6 +39,8 @@ class FilterController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity->setUser($this->getUser());
+            $entity->setCreatedAt(new \DateTime('now'));
+            $entity->setActive('1');
             $em->persist($entity);
             $em->flush();
 
