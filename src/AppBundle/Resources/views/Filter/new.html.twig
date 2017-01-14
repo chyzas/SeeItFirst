@@ -1,15 +1,9 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-    <h1>Filter creation</h1>
+    <h1>Create filter</h1>
 
     {{ form(form) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('filter') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+    <a href="{{ path('filter') }}">Back to the list</a>
 {% endblock %}
