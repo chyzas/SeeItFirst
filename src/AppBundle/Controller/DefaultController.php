@@ -10,6 +10,14 @@ class DefaultController extends Controller
 {
     public function indexAction()
     {
+        $user = $this->getUser();
+        if ($user) {
+            $filters = $this->getDoctrine()->getManager()->getRepository('AppBundle:Filter')->findBy(['user' => $user]);
+
+            return $this->render('AppBundle:Filter:index.html.twig', ['filters' => $filters]);
+        }
+
+
         return $this->render('AppBundle:default:index.html.twig');
     }
 }
