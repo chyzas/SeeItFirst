@@ -72,6 +72,8 @@ class Filter
     public function __construct()
     {
         $this->results = new ArrayCollection();
+        $this->setCreatedAt(new \DateTime());
+        $this->setActive(true);
     }
 
     /**

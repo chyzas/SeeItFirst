@@ -1,0 +1,22 @@
+.pageSection {
+    background-color: #66B9BF;
+    min-height: 600px;
+}
+
+
+.nav-container {
+    border-width: 0;
+    box-shadow: none;
+    background-color: aliceblue;
+}
+.navbar {
+    background-color: #FFFFFF;
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.navbar.navbar-default .navbar-collapse {
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}

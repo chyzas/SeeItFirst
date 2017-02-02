@@ -1,13 +1,44 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    <div class="container">
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            Hi {{ app.user.username }}
-            check your filters <a href="{{ path('filter') }}">here</a>
-        {% else %}
-            Hi unknow! You can register <a href="{{ path('fos_user_registration_register') }}">here</a>
-            or login <a href="{{ path('fos_user_security_login') }}">here</a>
-        {% endif %}
-    </div>
+    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div class="page-wrap">
+            <section class="pageSection">
+                <div class="container">
+                    <div class="row">
+                        <div class="pageHero-content">
+                            <h1>See it first</h1>
+                            <div class="description">
+                                <p>The easiest way to get something</p>
+                            </div>
+                        </div>
+                    </div>
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                {{ form_row(form.url) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                {{ form_row(form.name) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-lg-12">
+                                {{ form_row(form.email) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    {{ form_end(form) }}
+                </div>
+            </section>
+        </div>
+    {% endif %}
 {% endblock %}
