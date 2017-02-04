@@ -18,10 +18,19 @@ class DefaultController extends Controller
         }
 
         $form = $this->createFormBuilder()
-            ->add('url', 'text')
-            ->add('name', 'text')
-            ->add('email', 'text')
-            ->add('save', 'submit', array('label' => 'Submit'))
+            ->add('url', 'text', [
+                'attr' => ['class' => 'form-control'],
+                'label_attr' => ['class' => 'col-sm-2 control-label']
+            ])
+            ->add('name', 'text', [
+                'attr' => ['class' => 'form-control'],
+                'label_attr' => ['class' => 'col-sm-2 control-label']
+            ])
+            ->add('email', 'text', [
+                'attr' => ['class' => 'form-control'],
+                'label_attr' => ['class' => 'col-sm-2 control-label']
+            ])
+            ->add('save', 'submit', array('label' => 'Submit', 'attr' => array('class'=>'btn-default')))
             ->getForm();
 
         $form->handleRequest($request);

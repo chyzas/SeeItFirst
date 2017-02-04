@@ -3,7 +3,6 @@
     min-height: 600px;
 }
 
-
 .nav-container {
     border-width: 0;
     box-shadow: none;
@@ -19,4 +18,18 @@
     border: 0;
     -webkit-box-shadow: none;
     box-shadow: none;
+}
+
+.mb2 {
+    margin-bottom: 20px;
+}
+
+.content {
+    margin-left: 13px;
+}
+
+@media (min-width: 1200px) {
+    .content {
+        margin-left: 210px;
+    }
 }

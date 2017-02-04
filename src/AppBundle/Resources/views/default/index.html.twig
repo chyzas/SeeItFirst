@@ -6,37 +6,40 @@
             <section class="pageSection">
                 <div class="container">
                     <div class="row">
-                        <div class="pageHero-content">
+                        <div class="content mb2">
                             <h1>See it first</h1>
-                            <div class="description">
-                                <p>The easiest way to get something</p>
-                            </div>
+                            <small>
+                                The easiest way to catch a deal!!!
+                            </small>
                         </div>
                     </div>
-                    {{ form_start(form) }}
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                {{ form_row(form.url) }}
+                    <div class="filter-form">
+                        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                            <div class="form-group">
+                                {{ form_label(form.url) }}
+                                <div class="col-sm-10">
+                                    {{ form_widget(form.url) }}
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                {{ form_row(form.name) }}
+                            <div class="form-group">
+                                {{ form_label(form.name) }}
+                                <div class="col-sm-10">
+                                    {{ form_widget(form.name) }}
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="form-group">
-                            <div class="col-lg-12">
-                                {{ form_row(form.email) }}
+                            <div class="form-group">
+                                {{ form_label(form.email) }}
+                                <div class="col-sm-10">
+                                    {{ form_widget(form.email) }}
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    {{ form_widget(form.save) }}
+                                </div>
+                            </div>
+                        {{ form_end(form) }}
                     </div>
-
-                    {{ form_end(form) }}
                 </div>
             </section>
         </div>
