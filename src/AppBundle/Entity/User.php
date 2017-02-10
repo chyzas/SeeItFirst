@@ -30,6 +30,11 @@ class User extends BaseUser
      **/
     private $filters;
 
+    /**
+     * @var string
+     */
+    private $tempPlainPassword;
+
     public function __construct()
     {
         parent::__construct();
@@ -123,5 +128,21 @@ class User extends BaseUser
     public function getFacebookAccessToken()
     {
         return $this->facebook_access_token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTempPlainPassword()
+    {
+        return $this->tempPlainPassword;
+    }
+
+    /**
+     * @param string $tempPlainPassword
+     */
+    public function setTempPlainPassword($tempPlainPassword)
+    {
+        $this->tempPlainPassword = $tempPlainPassword;
     }
 }

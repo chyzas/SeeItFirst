@@ -42,4 +42,7 @@ sif_home_page:
   defaults: { _controller: AppBundle:Default:index }
 
 
+confirmation:
+  path: /confirm/{token}
+  defaults: { _controller: AppBundle:User:confirm }
 

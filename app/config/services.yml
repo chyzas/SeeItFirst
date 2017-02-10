@@ -10,3 +10,7 @@ services:
     filter_manager:
         class: AppBundle\Services\FilterManager
         arguments: ["@doctrine.orm.default_entity_manager"]
+
+    mail:
+        class: AppBundle\Services\Mail
+        arguments: ["@mailer", "@templating"]
