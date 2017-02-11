@@ -1,23 +1,33 @@
-.pageSection {
-    background-color: #66B9BF;
-    min-height: 600px;
+body {
+   background: linear-gradient(to left, #0AC977, #0AB1C9)
 }
 
-.nav-container {
-    border-width: 0;
-    box-shadow: none;
-    background-color: aliceblue;
+.header ul {
+    list-style-type: none;
+    margin-top: 10px;
+    padding: 0;
+    float: right;
 }
-.navbar {
-    background-color: #FFFFFF;
-    border: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+
+.header li {
+    display: inline;
 }
-.navbar.navbar-default .navbar-collapse {
-    border: 0;
-    -webkit-box-shadow: none;
-    box-shadow: none;
+
+.header li a {
+    color: white;
+    padding: 8px;
+}
+
+.pageSection {
+    min-height: 600px;
+    color: whitesmoke;
+}
+
+#form_save {
+    background-color: #FF6E32;
+    color: whitesmoke;
+    border-color: #FF6E32;
+    width: 150px;
 }
 
 .mb2 {

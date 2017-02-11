@@ -8,6 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function indexAction(Request $request)
     {
         $user = $this->getUser();
@@ -19,10 +23,12 @@ class DefaultController extends Controller
 
         $form = $this->createFormBuilder()
             ->add('url', 'text', [
+                'label' => 'Query url',
                 'attr' => ['class' => 'form-control'],
                 'label_attr' => ['class' => 'col-sm-2 control-label']
             ])
             ->add('name', 'text', [
+                'label' => 'Query name',
                 'attr' => ['class' => 'form-control'],
                 'label_attr' => ['class' => 'col-sm-2 control-label']
             ])
@@ -35,32 +41,40 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $userManager = $this->container->get('fos_user.user_manager');
             $url = $form->getData()['url'];
             $email = $form->getData()['email'];
-            $name = $form->getData()['name'];
-            $tokenGenerator = $this->container->get('fos_user.util.token_generator');
-            $password = substr($tokenGenerator->generateToken(), 0, 5);
-            try {
-                $userManager = $this->container->get('fos_user.user_manager');
-                $newUser = new User();
-                $newUser->setEmail($email);
-                $newUser->setUsername($email);
-                $newUser->setUsernameCanonical($email);
-                $newUser->setEnabled(false);
-                $newUser->setPlainPassword($password);
-                $newUser->setConfirmationToken(substr($tokenGenerator->generateToken(), 0, 7));
-                $newUser->setTempPlainPassword($password);
-                $userManager->updateUser($newUser);
 
-                $filterManager = $this->get('filter_manager');
-                $filterManager->addFilter($newUser, $url, $name);
+            if ($userManager->findUserBy(['email' => $email])) {
+                $this->addFlash('error', 'User already exist: ' . $email);
 
-                $this->get('mail')->sendConfirmation($newUser);
+                return $this->redirect($request->headers->get('referer'));
+            } else {
+                $name = $form->getData()['name'];
+                $tokenGenerator = $this->container->get('fos_user.util.token_generator');
+                $password = substr($tokenGenerator->generateToken(), 0, 5);
+                try {
+                    $newUser = new User();
+                    $newUser->setEmail($email);
+                    $newUser->setUsername($email);
+                    $newUser->setUsernameCanonical($email);
+                    $newUser->setEnabled(false);
+                    $newUser->setPlainPassword($password);
+                    $newUser->setConfirmationToken(substr($tokenGenerator->generateToken(), 0, 7));
+                    $newUser->setTempPlainPassword($password);
 
-                $this->addFlash('notice', 'User and filter has been created. Please confirm!');
+                    $userManager->updateUser($newUser);
 
-            } catch (\Exception $e) {
-                $this->addFlash('error', 'Something went wrong: ' . $e->getMessage());
+                    $filterManager = $this->get('filter_manager');
+                    $filterManager->addFilter($newUser, $url, $name);
+
+                    $this->get('mail')->sendConfirmation($newUser);
+
+                    $this->addFlash('notice', 'User and filter has been created. Please confirm!');
+
+                } catch (\Exception $e) {
+                    $this->addFlash('error', 'Something went wrong: ' . $e->getMessage());
+                }
             }
         }
 
