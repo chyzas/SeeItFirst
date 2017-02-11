@@ -1,0 +1,13 @@
+{% block subject %}Confirmation{% endblock %}
+
+{% block body_text %}
+    {% autoescape false %}
+        <h3>Hello!</h3>
+
+        <p>Your password: <strong>{{ pass }}</strong></p>
+        <p>Please confirm your account by accessing <a href="{{ url('confirmation', {'token': token}) }}">Confirm</a></p>
+
+        <p>Greetings,</p>
+        <p>the SeeItFirst team</p>
+    {% endautoescape %}
+{% endblock %}

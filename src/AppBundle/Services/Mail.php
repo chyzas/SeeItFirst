@@ -40,7 +40,7 @@ class Mail
             ->setTo($user->getEmail())
             ->setBody(
                 $this->templating->render(
-                    '@App/emails/registration.html.twig',
+                    '@App/emails/confirmation.html.twig',
                     [
                         'pass' => $user->getTempPlainPassword(),
                         'token' => $user->getConfirmationToken()
