@@ -44,15 +44,3 @@ body {
         margin-top: 50px;
     }
 }
-
-#form_name {
-    transition-property: top, left;
-    transition-duration: 1s, 1s;
-    transition-delay: 0s, 1s;
-}
-
-#form_email {
-    transition-property: top, left;
-    transition-duration: 1s, 1s;
-    transition-delay: 0s, 1s;
-}
