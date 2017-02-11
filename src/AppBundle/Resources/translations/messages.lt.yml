@@ -1,0 +1,8 @@
+main:
+    title: Pamatyk Pirmas!
+    message: Lengviausias būdas pamatyti naujausius skelbimus pirmam!
+    email: E-mail
+    save: Išsaugoti
+filter_form:
+    query_url: Užklausos nuoroda
+    query_name: Pavadinimas

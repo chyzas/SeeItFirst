@@ -23,7 +23,7 @@ body {
     color: whitesmoke;
 }
 
-#form_save {
+#form_save,  #_submit {
     background-color: #FF6E32;
     color: whitesmoke;
     border-color: #FF6E32;

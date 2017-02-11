@@ -23,20 +23,21 @@ class DefaultController extends Controller
 
         $form = $this->createFormBuilder()
             ->add('url', 'text', [
-                'label' => 'Query url',
+                'label' => 'filter_form.query_url',
                 'attr' => ['class' => 'form-control'],
                 'label_attr' => ['class' => 'col-sm-2 control-label']
             ])
             ->add('name', 'text', [
-                'label' => 'Query name',
+                'label' => 'filter_form.query_name',
                 'attr' => ['class' => 'form-control'],
                 'label_attr' => ['class' => 'col-sm-2 control-label']
             ])
             ->add('email', 'text', [
+                'label' => 'main.email',
                 'attr' => ['class' => 'form-control'],
                 'label_attr' => ['class' => 'col-sm-2 control-label']
             ])
-            ->add('save', 'submit', array('label' => 'Submit', 'attr' => array('class'=>'btn-default')))
+            ->add('save', 'submit', array('label' => 'main.save', 'attr' => array('class'=>'btn-default')))
             ->getForm();
 
         $form->handleRequest($request);
