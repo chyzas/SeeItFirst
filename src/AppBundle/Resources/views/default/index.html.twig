@@ -45,3 +45,43 @@
         </div>
     {% endif %}
 {% endblock %}
+{% block javascripts %}
+{{ parent() }}
+    <script>
+        $( document ).ready(function() {
+            const name = $('#form_name');
+            const email = $('#form_email');
+            const url = $('#form_url');
+            const save = $('#form_save');
+            const nameGroup = name.parent().closest('.form-group');
+            const emailGroup = email.parent().closest('.form-group');
+            nameGroup.hide();
+            emailGroup.hide();
+            save.prop('disabled', true);
+            var animation = true;
+            url.on('input', function () {
+                if (animation) {
+                    animate(nameGroup, "+=50");
+                    animate(emailGroup, "+=50");
+                    animation = false;
+                    save.prop('disabled', false);
+                } else {
+                    if (url.val().length == 0) {
+                        animate(nameGroup, "-=50");
+                        animate(emailGroup, "-=50");
+                        animation = true;
+                        save.prop('disabled', true);
+                    }
+                }
+            });
+
+            function animate(obj, diff) {
+                obj.animate({
+                    left: diff,
+                    height: "toggle"
+                }, 500, function() {
+                });
+            }
+        });
+    </script>
+{% endblock %}
