@@ -49,7 +49,7 @@ class FilterManager
         /** @var Site $site */
         $site = $this->entityManager->getRepository('AppBundle:Site')->findOneBy(['siteUrl' => $host]);
         if (!$site) {
-            throw new \RuntimeException('Sorry, this website is not allowed.');
+            throw new \RuntimeException('errors.url_not_allowed');
         }
 
         return $site;

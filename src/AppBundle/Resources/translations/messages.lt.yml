@@ -6,3 +6,7 @@ main:
 filter_form:
     query_url: Užklausos nuoroda
     query_name: Pavadinimas
+    saved: Vartotojas ir filtro užlausa buvo sukurta. Prašome pasitikrinti e-paštą ir patvirtinti.
+errors:
+    url_not_allowed: Atsiprašome, šio puslapio nepalaikome
+    user_exist: Toks vartotojas jau egzistuoja:

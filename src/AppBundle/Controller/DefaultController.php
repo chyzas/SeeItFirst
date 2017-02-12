@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\User;
+use AppBundle\Form\FirstQueryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -21,60 +21,27 @@ class DefaultController extends Controller
             return $this->render('AppBundle:Filter:index.html.twig', ['filters' => $filters]);
         }
 
-        $form = $this->createFormBuilder()
-            ->add('url', 'text', [
-                'label' => 'filter_form.query_url',
-                'attr' => ['class' => 'form-control'],
-                'label_attr' => ['class' => 'col-sm-2 control-label']
-            ])
-            ->add('name', 'text', [
-                'label' => 'filter_form.query_name',
-                'attr' => ['class' => 'form-control'],
-                'label_attr' => ['class' => 'col-sm-2 control-label']
-            ])
-            ->add('email', 'text', [
-                'label' => 'main.email',
-                'attr' => ['class' => 'form-control'],
-                'label_attr' => ['class' => 'col-sm-2 control-label']
-            ])
-            ->add('save', 'submit', array('label' => 'main.save', 'attr' => array('class'=>'btn-default')))
-            ->getForm();
+        $form = $this->createForm(new FirstQueryType());
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $userManager = $this->container->get('fos_user.user_manager');
-            $url = $form->getData()['url'];
-            $email = $form->getData()['email'];
+            $formData = $form->getData();
+            $email = $formData['email'];
 
             if ($userManager->findUserBy(['email' => $email])) {
-                $this->addFlash('error', 'User already exist: ' . $email);
+                $this->addFlash('danger', $this->get('translator')->trans('errors.user_exist') . $email);
 
                 return $this->redirect($request->headers->get('referer'));
             } else {
-                $name = $form->getData()['name'];
-                $tokenGenerator = $this->container->get('fos_user.util.token_generator');
-                $password = substr($tokenGenerator->generateToken(), 0, 5);
                 try {
-                    $newUser = new User();
-                    $newUser->setEmail($email);
-                    $newUser->setUsername($email);
-                    $newUser->setUsernameCanonical($email);
-                    $newUser->setEnabled(false);
-                    $newUser->setPlainPassword($password);
-                    $newUser->setConfirmationToken(substr($tokenGenerator->generateToken(), 0, 7));
-                    $newUser->setTempPlainPassword($password);
-
-                    $userManager->updateUser($newUser);
-
+                    $newUser = $this->get('user_service')->createUser($email);
                     $filterManager = $this->get('filter_manager');
-                    $filterManager->addFilter($newUser, $url, $name);
-
+                    $filterManager->addFilter($newUser, $formData['url'], $formData['name']);
                     $this->get('mail')->sendConfirmation($newUser);
-
-                    $this->addFlash('notice', 'User and filter has been created. Please confirm!');
-
+                    $this->addFlash('notice', $this->get('translator')->trans('filter_form.saved'));
                 } catch (\Exception $e) {
-                    $this->addFlash('error', 'Something went wrong: ' . $e->getMessage());
+                    $this->addFlash('danger', $this->get('translator')->trans($e->getMessage()));
                 }
             }
         }

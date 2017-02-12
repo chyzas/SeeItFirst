@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use AppBundle\Entity\Filter;
-use AppBundle\Form\FilterType;
+use AppBundle\Form\FirstQueryType;
 
 /**
  * Filter controller.
@@ -62,7 +62,7 @@ class FilterController extends Controller
      */
     private function createCreateForm(Filter $entity)
     {
-        $form = $this->createForm(new FilterType(), $entity, array(
+        $form = $this->createForm(new FirstQueryType(), $entity, array(
             'action' => $this->generateUrl('filter_create'),
             'method' => 'POST',
         ));
