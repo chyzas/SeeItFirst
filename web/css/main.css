@@ -34,13 +34,27 @@ body {
     margin-bottom: 20px;
 }
 
+.mt2 {
+    margin-top: 20px;
+}
+
 .content {
     margin-left: 13px;
+}
+
+.available-sites {
+    text-align: right;
 }
 
 @media (min-width: 1200px) {
     .content {
         margin-left: 210px;
         margin-top: 50px;
+    }
+}
+
+@media (min-width: 767px) {
+    .available-sites {
+        text-align: left;
     }
 }
