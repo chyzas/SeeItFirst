@@ -3,6 +3,7 @@ main:
     message: Lengviausias būdas pamatyti naujausius skelbimus pirmam!
     email: E-mail
     save: Išsaugoti
+    home: Pradžia
 filter_form:
     available_sites: Palaikomi portalai
     query_url: Užklausos nuoroda
@@ -20,3 +21,7 @@ emails:
             please_confirm: Prašom paspausti paskyros patvirtinimo nuorodą
             greetings: Jūsų,
             team: SeeItFirst komanda
+login:
+  no_acount: Neturite paskyros?
+  register: Užsiregistruokite čia!
+  forgot_password: Pamiršote slaptažodį?

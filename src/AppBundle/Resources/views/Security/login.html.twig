@@ -31,9 +31,9 @@
                     </div>
 
                     <input type="submit" id="_submit" name="_submit" class="btn btn-info btn-block" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
-                    <a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" class="btn btn-block btn-social btn-facebook">
-                        <i class="fa fa-facebook"></i> Sign in with Facebook
-                    </a>
+                    {#<a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" class="btn btn-block btn-social btn-facebook">#}
+                        {#<i class="fa fa-facebook"></i> Sign in with Facebook#}
+                    {#</a>#}
                 </div>
 
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -41,10 +41,10 @@
                 <div class="form-group">
                     <div class="col-md-12 control">
                         <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                            Don't have an account!
-                            <a href="{{ path('fos_user_registration_register')}}">Sign Up Here</a>
+                            {{ 'login.no_acount' | trans }}
+                            <a href="{{ path('fos_user_registration_register')}}">{{ 'login.register'|trans }}</a>
                             <br>
-                            <a href="{{ path('fos_user_resetting_request') }}">Forgot your password?</a>
+                            <a href="{{ path('fos_user_resetting_request') }}">{{ 'login.forgot_password'|trans }}</a>
                         </div>
                     </div>
                 </div>
