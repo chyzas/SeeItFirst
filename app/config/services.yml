@@ -13,7 +13,7 @@ services:
 
     mail:
         class: AppBundle\Services\Mail
-        arguments: ["@mailer", "@templating"]
+        arguments: ["@mailer", "@templating", "@translator"]
 
     user_service:
         class: AppBundle\Services\UserService

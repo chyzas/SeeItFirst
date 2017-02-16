@@ -5,6 +5,7 @@ namespace AppBundle\Services;
 use AppBundle\Entity\User;
 use Swift_Mailer;
 use Symfony\Bundle\TwigBundle\TwigEngine;
+use Symfony\Component\Translation\TranslatorInterface;
 
 class Mail
 {
@@ -19,14 +20,21 @@ class Mail
     private $templating;
 
     /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    /**
      * Mail constructor.
      * @param Swift_Mailer $mailer
      * @param TwigEngine $templating
+     * @param TranslatorInterface $translator
      */
-    public function __construct(Swift_Mailer $mailer, TwigEngine $templating)
+    public function __construct(Swift_Mailer $mailer, TwigEngine $templating, TranslatorInterface $translator)
     {
         $this->mailer = $mailer;
         $this->templating = $templating;
+        $this->translator = $translator;
     }
 
     /**
@@ -35,7 +43,7 @@ class Mail
     public function sendConfirmation(User $user)
     {
         $message = \Swift_Message::newInstance()
-            ->setSubject('Confirmation Email')
+            ->setSubject($this->translator->trans('emails.confirmation.subject'))
             ->setFrom('send@example.com')
             ->setTo($user->getEmail())
             ->setBody(

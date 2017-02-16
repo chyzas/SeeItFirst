@@ -1,13 +1,11 @@
-{% block subject %}Confirmation{% endblock %}
-
 {% block body_text %}
     {% autoescape false %}
-        <h3>Hello!</h3>
+        <h3>{{ 'emails.confirmation.header' | trans }}</h3>
 
-        <p>Your password: <strong>{{ pass }}</strong></p>
-        <p>Please confirm your account by accessing <a href="{{ url('confirmation', {'token': token}) }}">Confirm</a></p>
+        <p>{{ 'emails.confirmation.content.your_password' | trans }} <strong>{{ pass }}</strong></p>
+        <p>{{ 'emails.confirmation.content.please_confirm' | trans }} <a href="{{ url('confirmation', {'token': token}) }}">{{ url('confirmation', {'token': token}) }}</a></p>
 
-        <p>Greetings,</p>
-        <p>the SeeItFirst team</p>
+        <p>{{ 'emails.confirmation.content.greetings' |trans }}</p>
+        <p>{{ 'emails.confirmation.content.team' |trans }}</p>
     {% endautoescape %}
 {% endblock %}

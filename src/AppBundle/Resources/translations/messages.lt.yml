@@ -10,3 +10,12 @@ filter_form:
 errors:
     url_not_allowed: Atsiprašome, šio puslapio nepalaikome
     user_exist: Toks vartotojas jau egzistuoja:
+emails:
+    confirmation:
+        subject: Patvirtinimas
+        header: Sveiki!
+        content:
+            your_password: Jūsų slaptažodis:
+            please_confirm: Prašom paspausti paskyros patvirtinimo nuorodą
+            greetings: Jūsų,
+            team: SeeItFirst komanda
