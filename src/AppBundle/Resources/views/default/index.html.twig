@@ -13,6 +13,18 @@
                             </small>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-2 text-right">
+                            {{ 'filter_form.available_sites' | trans }}
+                        </div>
+                        <div class="col-sm-8">
+                            <ul class="list-inline">
+                                {% for site in urls %}
+                                    <li>{{ site.siteUrl }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
                     <div class="filter-form">
                         {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
                             <div class="form-group">

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Site;
 use AppBundle\Form\FirstQueryType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,7 +48,16 @@ class DefaultController extends Controller
         }
 
         return $this->render('AppBundle:default:index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'urls' => $this->getAvailableUrls()
         ]);
+    }
+
+    /**
+     * @return array
+     */
+    private function getAvailableUrls()
+    {
+        return $this->get('doctrine.orm.entity_manager')->getRepository(Site::class)->findAll();
     }
 }

@@ -4,6 +4,7 @@ main:
     email: E-mail
     save: Išsaugoti
 filter_form:
+    available_sites: Palaikomi portalai
     query_url: Užklausos nuoroda
     query_name: Pavadinimas
     saved: Vartotojas ir filtro užlausa buvo sukurta. Prašome pasitikrinti e-paštą ir patvirtinti.
