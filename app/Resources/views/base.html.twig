@@ -22,9 +22,10 @@
                         <li><a href="{{ path('fos_user_profile_show')}}">Profile</a></li>
                         <li><a href="{{ path('fos_user_security_logout')}}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
                     {% else %}
-                        <li><a href="{{ path('sif_home_page') }}">{{ 'main.home' | trans }}</a></li>
-                        <li><a href="{{ path('fos_user_registration_register')}}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
-                        <li><a href="{{ path('fos_user_security_login')}}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                            {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
+                        </button>
+                        {#<li><a href="{{ path('fos_user_security_login')}}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>#}
                     {% endif %}
                 </ul>
             </div>
@@ -33,6 +34,58 @@
     <div class="container">
         <div class="row">
             {% include '@App/flash_messages.html.twig' %}
+        </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal" role="form">
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <input type="text" id="username" name="_username" required="required" class="form-control" autofocus="" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" id="_submit" name="_submit" class="btn btn-info btn-block" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+                                    {#<a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" class="btn btn-block btn-social btn-facebook">#}
+                                    {#<i class="fa fa-facebook"></i> Sign in with Facebook#}
+                                    {#</a>#}
+                                </div>
+
+                                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }} " />
+
+                                <div class="form-group">
+                                    <div class="col-md-12 control">
+                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                            {{ 'login.no_acount' | trans }}
+                                            <a href="{{ path('fos_user_registration_register')}}">{{ 'login.register'|trans }}</a>
+                                            <br>
+                                            <a href="{{ path('fos_user_resetting_request') }}">{{ 'login.forgot_password'|trans }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     {% block body %} {% endblock %}
