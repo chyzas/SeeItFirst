@@ -65,6 +65,12 @@ body {
     vertical-align: middle;
 }
 
+.sif-button {
+    background-color: #FF6E32;
+    border-color: #FF6E32;
+    color: whitesmoke;
+}
+
 @media (min-width: 1200px) {
     .content {
         margin-left: 210px;

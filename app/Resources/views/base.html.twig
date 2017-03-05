@@ -22,7 +22,7 @@
                         <li><a href="{{ path('fos_user_profile_show')}}">Profile</a></li>
                         <li><a href="{{ path('fos_user_security_logout')}}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
                     {% else %}
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
+                        <button type="button" class="btn sif-button hvr-glow" data-toggle="modal" data-target="#myModal">
                             {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
                         </button>
                         {#<li><a href="{{ path('fos_user_security_login')}}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>#}
