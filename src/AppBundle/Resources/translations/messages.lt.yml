@@ -25,3 +25,17 @@ login:
   no_acount: Neturite paskyros?
   register: Užsiregistruokite čia!
   forgot_password: Pamiršote slaptažodį?
+form:
+  email: E-mail
+  username: Naudotojas
+  password_confirmation: Patvirtinti slaptažodį
+  password: Slaptažodis
+registration:
+  submit: Registruotis
+  title: Registracija
+resetting:
+  title: Slaptažodžio atstatymas
+  submit: Atstatyti
+
+
+

@@ -50,6 +50,10 @@ body {
     text-align: center;
 }
 
+.sif-white {
+    color: whitesmoke;
+}
+
 @media screen and (min-width: 768px) {
     .modal:before {
         display: inline-block;
