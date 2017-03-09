@@ -25,6 +25,7 @@ login:
   no_acount: Neturite paskyros?
   register: Užsiregistruokite čia!
   forgot_password: Pamiršote slaptažodį?
+  or: arba
 form:
   email: E-mail
   username: Naudotojas

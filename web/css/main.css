@@ -54,6 +54,30 @@ body {
     color: whitesmoke;
 }
 
+.form--option {
+    color: #b9bcc0;
+    font-size: 1.75em;
+    line-height: 2.5;
+    position: relative;
+    text-align: center;
+}
+
+.form--option:after, .form--option:before {
+    border-top: 1px solid #e1e2e4;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: 50%;
+    width: 42%;
+    z-index: 0;
+}
+
+.form--option:before {
+    left: auto;
+    right: 0;
+}
+
 @media screen and (min-width: 768px) {
     .modal:before {
         display: inline-block;
