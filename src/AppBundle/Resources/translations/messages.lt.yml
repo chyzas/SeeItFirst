@@ -4,11 +4,20 @@ main:
     email: E-mail
     save: Išsaugoti
     home: Pradžia
+    filters: Filtrai
+    profile: Profilis
 filter_form:
     available_sites: Palaikomi portalai
     query_url: Užklausos nuoroda
     query_name: Pavadinimas
     saved: Vartotojas ir filtro užlausa buvo sukurta. Prašome pasitikrinti e-paštą ir patvirtinti.
+filter_table:
+    name: Pavadinimas
+    url: Filtro addresas
+    delete: Ištrinti
+    results: Rezultatai
+    add: Pridėti
+
 errors:
     url_not_allowed: Atsiprašome, šio puslapio nepalaikome
     user_exist: Toks vartotojas jau egzistuoja:
@@ -26,6 +35,7 @@ login:
   register: Užsiregistruokite čia!
   forgot_password: Pamiršote slaptažodį?
   or: arba
+  facebook_login: Prisijungti
 form:
   email: E-mail
   username: Naudotojas

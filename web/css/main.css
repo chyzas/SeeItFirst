@@ -54,6 +54,10 @@ body {
     color: whitesmoke;
 }
 
+.sif-orange {
+    color: #FF6E32
+}
+
 .form--option {
     color: #b9bcc0;
     font-size: 1.75em;
