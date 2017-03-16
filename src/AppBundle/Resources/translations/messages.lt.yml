@@ -21,6 +21,7 @@ filter_table:
 errors:
     url_not_allowed: Atsiprašome, šio puslapio nepalaikome
     user_exist: Toks vartotojas jau egzistuoja:
+    duplicate_url: Jau tokį filtrą turite!
 emails:
     confirmation:
         subject: Patvirtinimas

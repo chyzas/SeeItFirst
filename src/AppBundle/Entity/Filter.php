@@ -6,11 +6,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @Assert\Callback(methods={"checkFilter"})
  * @ORM\Entity
  * @ORM\Table(name="filter")
+ * @UniqueEntity(fields={"site", "url"})})
  */
 class Filter
 {

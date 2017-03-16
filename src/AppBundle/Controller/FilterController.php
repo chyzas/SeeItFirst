@@ -2,11 +2,13 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use AppBundle\Entity\Filter;
 use AppBundle\Form\FirstQueryType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Filter controller.
@@ -32,25 +34,23 @@ class FilterController extends Controller
      */
     public function createAction(Request $request)
     {
-        $entity = new Filter();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $entity->setUser($this->getUser());
-            $entity->setCreatedAt(new \DateTime('now'));
-            $entity->setActive('1');
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('filter_show', array('id' => $entity->getId())));
+        $filterManager = $this->get('filter_manager');
+        try {
+            $filter = $filterManager->addFilter($this->getUser(), $request->get('url'), $request->get('name'));
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'message' => $e->getMessage()
+            ],
+                Response::HTTP_BAD_REQUEST);
         }
 
-        return $this->render('AppBundle:Filter:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+        return new JsonResponse(
+            [
+                'id' => $filter->getId(),
+                'name' => $filter->getFilterName(),
+                'url' => $filter->getUrl()
+            ]
+        );
     }
 
     /**
