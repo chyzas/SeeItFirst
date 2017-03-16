@@ -42,21 +42,22 @@
                         <div class="col-xs-10 col-xs-offset-1">
                             <form id="create-new-filter" action="{{ path("filter_create") }}" method="post" class="form-horizontal" role="form">
                                 <div class="form-group">
-                                    <div class="input-group">
+                                    <div class="col-sm-12">
                                         <input type="text" name="url" id="url" required="required" class="form-control" autofocus="" placeholder="{{ 'filter_form.query_url'|trans }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <div class="input-group">
+                                    <div class="col-sm-12">
                                         <input type="text" name="name" id="filterName" required="required" class="form-control" placeholder="{{ 'filter_form.query_name'|trans }}">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <input type="submit" id="_submit" name="_submit" class="btn btn-info btn-block" value="{{ 'main.save'|trans }}" />
+                                    <div class="col-sm-12">
+                                        <input type="submit" id="_submit" name="_submit" class="btn btn-info btn-block" value="{{ 'main.save'|trans }}" />
+                                    </div>
                                 </div>
-
                                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }} " />
                             </form>
                         </div>
