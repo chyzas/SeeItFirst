@@ -38,12 +38,18 @@ class FilterManager
      */
     public function addFilter(User $user, $url, $name)
     {
+        $currentFilters = $this->entityManager->getRepository('AppBundle:Filter')->findBy(['user' => $user]);
+        //Todo this should be moved to validator service
+        if (count($currentFilters) >= 3) {
+            throw new Exception($this->translator->trans('errors.maximum_reached'));
+        }
         $filter = new Filter();
         $filter->setUser($user);
         $filter->setUrl($url);
         $filter->setSite($this->parseUrl($url));
         $filter->setFilterName($name);
         $exist = $this->entityManager->getRepository('AppBundle:Filter')->findBy(['user' => $user, 'url' => $url]);
+        //Todo this should be moved to validator service
         if (count($exist) > 0) {
             throw new Exception($this->translator->trans('errors.duplicate_url'));
         }
