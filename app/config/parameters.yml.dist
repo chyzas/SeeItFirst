@@ -3,22 +3,22 @@
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
 parameters:
     database_driver: pdo_mysql
-    database_host:     127.0.0.1
-    database_port:     ~
-    database_name:     symfony
-    database_user:     root
-    database_password: ~
+    database_host: '%env.database.host%'
+    database_port: ~
+    database_name: sif
+    database_user: '%env.database.user%'
+    database_password: '%env.database.password%'
     # You should uncomment this if you want use pdo_sqlite
     # database_path: "%kernel.root_dir%/data.db3"
 
     mailer_transport:  smtp
-    mailer_host:       127.0.0.1
-    mailer_user:       ~
-    mailer_password:   ~
+    mailer_host:     '%env.mailer.host%'
+    mailer_user:     '%env.mailer.user%'
+    mailer_password: '%env.mailer.password%'
 
     # A secret key that's used to generate certain security-related tokens
     secret:            ThisTokenIsNotSoSecretChangeIt
 
     # facebook id
-    facebook_app_id: ~
-    facebook_app_secret: ~
+    facebook_app_id: '%env.facebook.id%'
+    facebook_app_secret: '%env.facebook.secret%'
