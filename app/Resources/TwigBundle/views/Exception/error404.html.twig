@@ -1,0 +1,14 @@
+{% extends 'master.html.twig' %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="hero-unit center">
+                    <h1>{{ 'errors.page_not_found'|trans }}</h1>
+                    <a href="{{ path('sif_home_page') }}" class="btn sif-button">{{ 'main.home'|trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

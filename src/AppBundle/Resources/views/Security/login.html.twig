@@ -1,3 +1,5 @@
+{% extends "AppBundle::layout.html.twig" %}
+
 {% block fos_user_content %}
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
@@ -5,48 +7,7 @@
                 <div class="alert alert-danger" role="alert">{{ error|trans({}, 'FOSUserBundle') }}</div>
             {% endif %}
 
-            <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal" role="form">
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" autofocus="" placeholder="{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="checkbox pull-left">
-                        <label>
-                            <input type="checkbox" value="remember-me"> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
-                        </label>
-                    </div>
-
-                    <input type="submit" id="_submit" name="_submit" class="btn btn-info btn-block" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
-                    {#<a href="{{ path('hwi_oauth_service_redirect', {'service': 'facebook' }) }}" class="btn btn-block btn-social btn-facebook">#}
-                        {#<i class="fa fa-facebook"></i> Sign in with Facebook#}
-                    {#</a>#}
-                </div>
-
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-
-                <div class="form-group">
-                    <div class="col-md-12 control">
-                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                            {{ 'login.no_acount' | trans }}
-                            <a href="{{ path('fos_user_registration_register')}}">{{ 'login.register'|trans }}</a>
-                            <br>
-                            <a href="{{ path('fos_user_resetting_request') }}">{{ 'login.forgot_password'|trans }}</a>
-                        </div>
-                    </div>
-                </div>
-            </form>
+            {{ include('@App/Security/login_form.html.twig') }}
         </div>
     </div>
 {% endblock %}

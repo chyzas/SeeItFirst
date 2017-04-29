@@ -6,6 +6,7 @@ main:
     home: Pradžia
     filters: Filtrai
     profile: Profilis
+    welcome: Sveiki
 filter_form:
     available_sites: Palaikomi portalai
     query_url: Užklausos nuoroda
@@ -23,6 +24,10 @@ errors:
     user_exist: Toks vartotojas jau egzistuoja:
     duplicate_url: Jau tokį filtrą turite!
     maximum_reached: Deja daugiau filtrų pridėti nebegalite
+    page_not_found: Puslapis nerastas!
+    forbidden: Turinys nepasiekiamas!
+    filter:
+        not_found: Toks filtras neegzistuoja
 emails:
     confirmation:
         subject: Patvirtinimas

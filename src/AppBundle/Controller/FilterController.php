@@ -112,14 +112,20 @@ class FilterController extends Controller
      */
     public function deleteAction($id)
     {
+        $user = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $filter = $em->getRepository('AppBundle:Filter')->find($id);
 
         if (!$filter) {
             throw $this->createNotFoundException(
-                'No product found for id '.$id
+                $this->get('translator')->trans('errors.filter.not_found')
             );
         }
+
+        if ($filter->getUser() != $user) {
+            return $this->redirectToRoute('fos_user_security_login');
+        }
+
 
         $em->remove($filter);
         $em->flush();

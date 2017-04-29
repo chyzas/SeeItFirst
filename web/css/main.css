@@ -103,6 +103,15 @@ body {
     color: whitesmoke;
 }
 
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-top: auto;
+}
+
+
 @media (min-width: 1200px) {
     .content {
         margin-left: 210px;
