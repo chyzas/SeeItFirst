@@ -30,6 +30,10 @@ body {
     width: 150px;
 }
 
+.grey-black {
+    color: #333;
+}
+
 .mb2 {
     margin-bottom: 20px;
 }
