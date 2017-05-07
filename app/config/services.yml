@@ -4,12 +4,11 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    url_validator:
+        class: AppBundle\Services\FilterValidatorService
     filter_manager:
         class: AppBundle\Services\FilterManager
-        arguments: ["@doctrine.orm.default_entity_manager", "@translator"]
+        arguments: ["@doctrine.orm.default_entity_manager", "@translator", "@url_validator"]
 
     mail:
         class: AppBundle\Services\Mail

@@ -23,6 +23,7 @@ $('document').ready(function(){
                 $('#user-filter-table tr:last').after(markup)
             },
             error: function(data) {
+                debugger
                 $('#new-filter-modal .modal-body').prepend("<div class='alert alert-danger'>"+data.responseJSON.message+"</div>");
             }
         });

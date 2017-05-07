@@ -6,7 +6,7 @@ main:
     home: Pradžia
     filters: Filtrai
     profile: Profilis
-    welcome: Sveiki
+    welcome: Skelbimų seklys
 filter_form:
     available_sites: Palaikomi portalai
     query_url: Užklausos nuoroda
@@ -28,6 +28,7 @@ errors:
     forbidden: Turinys nepasiekiamas!
     filter:
         not_found: Toks filtras neegzistuoja
+    narrow_search: Susiaurinkite paiešką. Skelbimų kiekis: %count%, leidžiama < %threshold%
 emails:
     confirmation:
         subject: Patvirtinimas

@@ -11,6 +11,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Site
 {
+    const SITE_SKELBIU = 'skelbiu.lt';
+    const SITE_AUTOPLIUS = 'autoplius.lt';
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
