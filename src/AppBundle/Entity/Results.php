@@ -27,7 +27,7 @@ class Results
     /**
      * @var int
      *
-     * @ORM\Column(name="price", type="float", nullable=true)
+     * @ORM\Column(name="price", type="string", nullable=true)
      */
     protected $price;
 
