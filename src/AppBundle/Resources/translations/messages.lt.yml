@@ -44,6 +44,8 @@ login:
   forgot_password: Pamiršote slaptažodį?
   or: arba
   facebook_login: Prisijungti
+  error:
+    bad_crediantials: Neteisingi duomenys!
 form:
   email: E-mail
   username: Naudotojas
@@ -52,6 +54,8 @@ form:
 registration:
   submit: Registruotis
   title: Registracija
+  flash:
+    user_created: Vartotojas sukurtas!
 resetting:
   title: Slaptažodžio atstatymas
   submit: Atstatyti

@@ -1,10 +1,10 @@
 {% for type, messages in app.session.flashbag.all() %}
     {% for message in messages %}
-        <div class = "alert alert-{{ type }} alert-dismissable">
+        <div class = "alert alert-{{ type|replace({'fos_user_': ""}) }} alert-dismissable">
             <button type = "button" class = "close" data-dismiss = "alert" aria-hidden = "true">
                 &times;
             </button>
-            {{ message | raw }}
+            {{ message|trans() }}
         </div>
     {% endfor %}
 {% endfor %}
