@@ -61,6 +61,8 @@ registration:
 resetting:
   title: Slaptažodžio atstatymas
   submit: Atstatyti
+  flash:
+    success: Slaptažodis pakeistas
 
 
 
