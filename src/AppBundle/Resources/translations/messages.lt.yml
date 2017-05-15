@@ -56,6 +56,8 @@ registration:
   title: Registracija
   flash:
     user_created: Vartotojas sukurtas!
+  check_email: Buvo išsiųstas el. paštas adresu %email%. Jame rasite nuorodą kurią aplankę aktyvuosite savo paskyrą.
+
 resetting:
   title: Slaptažodžio atstatymas
   submit: Atstatyti

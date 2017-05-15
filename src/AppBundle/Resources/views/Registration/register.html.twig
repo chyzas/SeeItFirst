@@ -1,37 +1,35 @@
 {% extends "AppBundle::layout.html.twig" %}
 
 {% block fos_user_content %}
-    <div class="row">
-        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
-            <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
-                <div id="fos_user_registration_form">
-                    <div class="text-center sif-white">
-                        <h2>{{ 'registration.title'|trans }}</h2>
-                    </div>
-                    <div class="form-group" >
-                        {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans } }) }}
-                        {{ form_errors(form.email) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans } }) }}
-                        {{ form_errors(form.username) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans } }) }}
-                        {{ form_errors(form.plainPassword.first) }}
-                    </div>
-                    <div class="form-group">
-                        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans } }) }}
-                        {{ form_errors(form.plainPassword.second) }}
-                    </div>
-
-                    {{ form_rest(form) }}
-
+    <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+        <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST">
+            <div id="fos_user_registration_form">
+                <div class="text-center sif-white">
+                    <h2>{{ 'registration.title'|trans }}</h2>
                 </div>
-                <div>
-                    <input class="btn btn-block sif-button" type="submit" value="{{ 'registration.submit'|trans }}">
+                <div class="form-group" >
+                    {{ form_widget(form.email, { 'attr': {'class': 'form-control', 'placeholder': 'form.email'|trans } }) }}
+                    {{ form_errors(form.email) }}
                 </div>
-            </form>
-        </div>
+                <div class="form-group">
+                    {{ form_widget(form.username, { 'attr': {'class': 'form-control', 'placeholder': 'form.username'|trans } }) }}
+                    {{ form_errors(form.username) }}
+                </div>
+                <div class="form-group">
+                    {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control', 'placeholder': 'form.password'|trans } }) }}
+                    {{ form_errors(form.plainPassword.first) }}
+                </div>
+                <div class="form-group">
+                    {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control', 'placeholder': 'form.password_confirmation'|trans } }) }}
+                    {{ form_errors(form.plainPassword.second) }}
+                </div>
+
+                {{ form_rest(form) }}
+
+            </div>
+            <div>
+                <input class="btn btn-block sif-button" type="submit" value="{{ 'registration.submit'|trans }}">
+            </div>
+        </form>
     </div>
 {% endblock %}
