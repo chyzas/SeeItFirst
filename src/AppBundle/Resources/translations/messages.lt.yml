@@ -64,5 +64,8 @@ resetting:
   flash:
     success: Slaptažodis pakeistas
 
+profile:
+  title: Profilis
+
 
 
