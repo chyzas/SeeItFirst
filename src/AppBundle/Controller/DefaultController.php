@@ -49,6 +49,8 @@ class DefaultController extends Controller
                     $this->addFlash('danger', $this->get('translator')->trans($e->getMessage()));
                 }
             }
+
+            return $this->redirect($request->getUri());
         }
 
         return $this->render('AppBundle:default:index.html.twig', [
