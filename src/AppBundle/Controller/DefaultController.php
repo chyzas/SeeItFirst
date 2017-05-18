@@ -35,13 +35,17 @@ class DefaultController extends Controller
 
                 return $this->redirect($request->headers->get('referer'));
             } else {
+                $em = $this->get('doctrine.orm.entity_manager');
+                $em->getConnection()->beginTransaction();
                 try {
                     $newUser = $this->get('user_service')->createUser($email);
                     $filterManager = $this->get('filter_manager');
                     $filterManager->addFilter($newUser, $formData['url'], $formData['name']);
+                    $em->getConnection()->commit();
                     $this->get('mail')->sendConfirmation($newUser);
                     $this->addFlash('notice', $this->get('translator')->trans('filter_form.saved'));
                 } catch (\Exception $e) {
+                    $em->getConnection()->rollBack();
                     $this->addFlash('danger', $this->get('translator')->trans($e->getMessage()));
                 }
             }

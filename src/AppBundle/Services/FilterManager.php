@@ -50,13 +50,27 @@ class FilterManager
     {
         $currentFilters = $this->entityManager->getRepository('AppBundle:Filter')->findBy(['user' => $user]);
         //Todo this should be moved to validator service
-        if (count($currentFilters) >= 3) {
+        if (count($currentFilters) >= 1) {
             throw new Exception($this->translator->trans('errors.maximum_reached'));
         }
         $filter = new Filter();
         $filter->setUser($user);
+        $site = $this->parseUrl($url);
+
+        list($url, $host) = $this->urlValidatorService->validateMobileUrl($url);
+        $adsCount = $this->urlValidatorService->getAdsCount($host, $url);
+
+        if ($adsCount > self::MAX_ADS_QTY) {
+            throw new \RuntimeException($this->translator->trans(
+                'errors.narrow_search',
+                [
+                    '%count%' => $adsCount,
+                    '%threshold%' => self::MAX_ADS_QTY,
+                ]
+            ));
+        }
+        $filter->setSite($site);
         $filter->setUrl($url);
-        $filter->setSite($this->parseUrl($url));
         $filter->setFilterName($name);
         $exist = $this->entityManager->getRepository('AppBundle:Filter')->findBy(['user' => $user, 'url' => $url]);
         //Todo this should be moved to validator service
@@ -81,18 +95,6 @@ class FilterManager
         $site = $this->entityManager->getRepository('AppBundle:Site')->findOneBy(['siteUrl' => $host]);
         if (!$site) {
             throw new \RuntimeException($this->translator->trans('errors.url_not_allowed'));
-        }
-
-        $adsCount = $this->urlValidatorService->getAdsCount($host, $url);
-
-        if ($adsCount > self::MAX_ADS_QTY) {
-            throw new \RuntimeException($this->translator->trans(
-                'errors.narrow_search',
-                [
-                    '%count%' => $adsCount,
-                    '%threshold%' => self::MAX_ADS_QTY,
-                ]
-            ));
         }
 
         return $site;

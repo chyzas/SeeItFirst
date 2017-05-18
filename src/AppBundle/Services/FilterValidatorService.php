@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Chyzas
- * Date: 5/7/2017
- * Time: 3:33 PM
- */
 
 namespace AppBundle\Services;
-
 
 use AppBundle\Entity\Site;
 use AppBundle\Services\Crawler\AutopliusCrawler;
@@ -30,5 +23,39 @@ class FilterValidatorService
             default:
                 throw new \RuntimeException('Something went wrong');
         }
+    }
+
+    /**
+     * @param $url
+     *
+     * @return array
+     */
+    public function validateMobileUrl($url)
+    {
+        $pieces = parse_url($url);
+
+        if (substr($pieces['host'], 0,2) === 'm.') {
+            $pieces['host'] = substr($pieces['host'], 2);
+
+            return [$pieces['scheme'] . '://www.' . $pieces['host'] . $pieces['path'] . '?'. $pieces['query'], $pieces['host']];
+        }
+
+        return [$url, $pieces['host']];
+    }
+
+    /**
+     * @param string $url
+     * @return bool
+     */
+    function get_domain($url)
+    {
+        $pieces = parse_url($url);
+        $domain = isset($pieces['host']) ? $pieces['host'] : '';
+        if (preg_match('/(?P<domain>[a-z0-9][a-z0-9\-]{1,63}\.[a-z\.]{2,6})$/i', $domain, $regs)) {
+
+            return $regs['domain'];
+        }
+
+        return false;
     }
 }
