@@ -27,20 +27,19 @@ class FilterValidatorService
 
     /**
      * @param $url
+     * @param $host
      *
-     * @return array
+     * @return string
      */
-    public function validateMobileUrl($url)
+    public function validateMobileUrl($host, $url)
     {
         $pieces = parse_url($url);
 
-        if (substr($pieces['host'], 0,2) === 'm.') {
-            $pieces['host'] = substr($pieces['host'], 2);
-
-            return [$pieces['scheme'] . '://www.' . $pieces['host'] . $pieces['path'] . '?'. $pieces['query'], $pieces['host']];
+        if (isset($pieces['query'])) {
+            return $pieces['scheme'] . '://www.' . $host . $pieces['path'] . '?'. $pieces['query'];
         }
 
-        return [$url, $pieces['host']];
+        return $pieces['scheme'] . '://www.' . $host . $pieces['path'];
     }
 
     /**

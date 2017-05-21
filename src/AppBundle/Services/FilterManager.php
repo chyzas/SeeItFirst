@@ -57,8 +57,8 @@ class FilterManager
         $filter->setUser($user);
         $site = $this->parseUrl($url);
 
-        list($url, $host) = $this->urlValidatorService->validateMobileUrl($url);
-        $adsCount = $this->urlValidatorService->getAdsCount($host, $url);
+        $url = $this->urlValidatorService->validateMobileUrl($site->getSiteUrl(), $url);
+        $adsCount = $this->urlValidatorService->getAdsCount($site->getSiteUrl(), $url);
 
         if ($adsCount > self::MAX_ADS_QTY) {
             throw new \RuntimeException($this->translator->trans(
