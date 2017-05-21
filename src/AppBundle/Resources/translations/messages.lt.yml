@@ -67,5 +67,12 @@ resetting:
 profile:
   title: Profilis
 
-
-
+results:
+    price: Kaina
+    title: Pavadinimas
+    link: Adresas
+    added_at: Pridėta
+    status: Statusas
+    new: Naujas
+    old: Senas
+    count: Rezultatų kiekis

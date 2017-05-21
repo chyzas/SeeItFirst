@@ -133,10 +133,23 @@ class FilterController extends Controller
         return $this->redirectToRoute('filter');
     }
 
-    public function resultsAction($id)
-    {
-        $results = $this->getDoctrine()->getManager()->getRepository('AppBundle:Results')->findBy(['filter' => $id]);
 
-        return $this->render('AppBundle:Filter:results.html.twig', ['results' => $results]);
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function resultsAction(Request $request)
+    {
+        $query = $this->getDoctrine()->getManager()->getRepository('AppBundle:Results')->findBy(['filter' => $request->get('id')]);
+
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            20
+
+        );
+
+        return $this->render('AppBundle:Filter:results.html.twig', ['pagination' => $pagination]);
     }
 }
