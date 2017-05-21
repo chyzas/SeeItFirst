@@ -36,6 +36,9 @@ class User extends BaseUser
      */
     protected $email;
 
+    /** @ORM\Column(name="available_filter_count", type="integer") */
+    protected $availableFilterCount;
+
     /**
      * @var string
      */
@@ -150,5 +153,21 @@ class User extends BaseUser
     public function setTempPlainPassword($tempPlainPassword)
     {
         $this->tempPlainPassword = $tempPlainPassword;
+    }
+
+    /**
+     * @return int
+     */
+    public function getAvailableFilterCount(): int
+    {
+        return $this->availableFilterCount;
+    }
+
+    /**
+     * @param int $availableFilterCount
+     */
+    public function setAvailableFilterCount(int $availableFilterCount)
+    {
+        $this->availableFilterCount = $availableFilterCount;
     }
 }

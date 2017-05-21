@@ -4,6 +4,7 @@
     <div class="col-xs-4 col-xs-offset-4 col-md-4 col-md-offset-4 sif-white">
         <div class="fos_user_user_show">
             <p>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}: {{ user.email }}</p>
+            <p>{{ 'profile.available_filter_count'|trans }}: {{ user.availableFilterCount }}</p>
         </div>
     </div>
 {% endblock %}

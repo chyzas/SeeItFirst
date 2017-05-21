@@ -2,10 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Site;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 use AppBundle\Entity\Filter;
 use AppBundle\Form\FirstQueryType;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,7 +26,10 @@ class FilterController extends Controller
 
         $filters = $this->getDoctrine()->getManager()->getRepository('AppBundle:Filter')->findBy(['user' => $user]);
 
-        return $this->render('AppBundle:Filter:index.html.twig', ['filters' => $filters]);
+        return $this->render('AppBundle:Filter:index.html.twig', [
+            'filters' => $filters,
+            'urls' => $this->get('doctrine.orm.entity_manager')->getRepository(Site::class)->findAll()
+        ]);
     }
     /**
      * Creates a new Filter entity.

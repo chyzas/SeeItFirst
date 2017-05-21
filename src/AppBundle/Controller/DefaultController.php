@@ -19,7 +19,10 @@ class DefaultController extends Controller
         if ($user) {
             $filters = $this->getDoctrine()->getManager()->getRepository('AppBundle:Filter')->findBy(['user' => $user]);
 
-            return $this->render('AppBundle:Filter:index.html.twig', ['filters' => $filters]);
+            return $this->render('AppBundle:Filter:index.html.twig', [
+                'filters' => $filters,
+                'urls' => $this->getAvailableUrls()
+            ]);
         }
 
         $form = $this->createForm(new FirstQueryType());

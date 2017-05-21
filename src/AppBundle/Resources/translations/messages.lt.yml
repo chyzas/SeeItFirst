@@ -66,6 +66,7 @@ resetting:
 
 profile:
   title: Profilis
+  available_filter_count: Leistinas filtrų kiekis
 
 results:
     price: Kaina

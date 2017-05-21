@@ -50,7 +50,7 @@ class FilterManager
     {
         $currentFilters = $this->entityManager->getRepository('AppBundle:Filter')->findBy(['user' => $user]);
         //Todo this should be moved to validator service
-        if (count($currentFilters) >= 1) {
+        if (count($currentFilters) >= $user->getAvailableFilterCount()) {
             throw new Exception($this->translator->trans('errors.maximum_reached'));
         }
         $filter = new Filter();
