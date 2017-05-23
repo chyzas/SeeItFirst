@@ -37,7 +37,7 @@ class User extends BaseUser
     protected $email;
 
     /** @ORM\Column(name="available_filter_count", type="integer") */
-    protected $availableFilterCount;
+    protected $availableFilterCount = 2;
 
     /**
      * @var string
