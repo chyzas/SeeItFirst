@@ -13,6 +13,7 @@ class Site
 {
     const SITE_SKELBIU = 'skelbiu.lt';
     const SITE_AUTOPLIUS = 'autoplius.lt';
+    const SITE_ARUODAS = 'aruodas.lt';
 
     /**
      * @ORM\Id
