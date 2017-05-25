@@ -12,6 +12,7 @@ filter_form:
     query_url: Užklausos nuoroda
     query_name: Pavadinimas
     saved: Vartotojas ir filtro užlausa buvo sukurta. Prašome pasitikrinti e-paštą ir patvirtinti.
+    help: Nufiltruokite skelbimus pagal pageidavimus ir nukopijuokite pilną nuoroda čia. Skelbimų kiekis turi būti mažesnis nei 200.
 filter_table:
     name: Pavadinimas
     url: Filtro addresas

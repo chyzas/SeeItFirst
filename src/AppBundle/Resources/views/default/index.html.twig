@@ -29,9 +29,14 @@
                         {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
                             <div class="form-group">
                                 {{ form_label(form.url) }}
-                                <div class="col-sm-8">
+                                <div class="col-sm-8 query-url">
                                     {{ form_widget(form.url) }}
                                 </div>
+                                <a href="#" data-toggle="tooltip" title="{{ 'filter_form.help'|trans }}">
+                                    <span class="sif-orange">
+                                        <i class="help-icon glyphicon glyphicon-question-sign"></i>
+                                    </span>
+                                </a>
                             </div>
                             <div class="form-group">
                                 {{ form_label(form.name) }}
@@ -61,6 +66,8 @@
 {{ parent() }}
     <script>
         $( document ).ready(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+
             const name = $('#first_query_name');
             const email = $('#first_query_email');
             const url = $('#first_query_url');

@@ -128,3 +128,11 @@ body {
         text-align: left;
     }
 }
+
+.query-url {
+    margin-right: -10px !important;
+}
+
+.help-icon {
+    margin-top: 7px;
+}
