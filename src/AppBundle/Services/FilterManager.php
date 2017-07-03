@@ -5,6 +5,7 @@ namespace AppBundle\Services;
 use AppBundle\Entity\Filter;
 use AppBundle\Entity\Site;
 use AppBundle\Entity\User;
+use AppBundle\Services\Queue\Queue;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -29,22 +30,33 @@ class FilterManager
     private $urlValidatorService;
 
     /**
+     * @var Queue
+     */
+    private $queue;
+
+    /**
      * FilterManager constructor.
      * @param EntityManager $entityManager
      * @param TranslatorInterface $translator
      * @param FilterValidatorService $urlValidatorService
+     * @param Queue $queue
      */
-    public function __construct(EntityManager $entityManager, TranslatorInterface $translator, FilterValidatorService $urlValidatorService)
+    public function __construct(
+        EntityManager $entityManager,
+        TranslatorInterface $translator,
+        FilterValidatorService $urlValidatorService,
+        Queue $queue
+    )
     {
         $this->entityManager = $entityManager;
         $this->translator = $translator;
         $this->urlValidatorService = $urlValidatorService;
+        $this->queue = $queue;
     }
 
     /**
      * @param User $user
      * @param string $url
-     * @return Filter
      */
     public function addFilter(User $user, $url, $name)
     {
@@ -58,6 +70,12 @@ class FilterManager
         $site = $this->parseUrl($url);
 
         $url = $this->urlValidatorService->validateMobileUrl($site->getSiteUrl(), $url);
+
+        $exist = $this->entityManager->getRepository('AppBundle:Filter')->findBy(['user' => $user, 'url' => $url]);
+        if (count($exist) > 0) {
+            throw new Exception($this->translator->trans('errors.duplicate_url'));
+        }
+
         $adsCount = $this->urlValidatorService->getAdsCount($site->getSiteUrl(), $url);
 
         if ($adsCount > self::MAX_ADS_QTY) {
@@ -72,16 +90,22 @@ class FilterManager
         $filter->setSite($site);
         $filter->setUrl($url);
         $filter->setFilterName($name);
-        $exist = $this->entityManager->getRepository('AppBundle:Filter')->findBy(['user' => $user, 'url' => $url]);
-        //Todo this should be moved to validator service
-        if (count($exist) > 0) {
-            throw new Exception($this->translator->trans('errors.duplicate_url'));
-        }
+        $token = bin2hex(openssl_random_pseudo_bytes(16));
+        $filter->setToken($token);
 
         $this->entityManager->persist($filter);
         $this->entityManager->flush();
 
-        return $filter;
+        $this->queue->send(
+            [
+                'subject' => $this->translator->trans('emails.filter_confirmation.subject', ['%name%' => $filter->getFilterName()]),
+                'email' => $user->getEmail(),
+                'template' => 'confirm_filter',
+                'data' => [
+                    'token' => $token
+                ]
+            ]
+        );
     }
 
     /**

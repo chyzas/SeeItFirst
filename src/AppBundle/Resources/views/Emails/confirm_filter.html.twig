@@ -1,0 +1,10 @@
+{% block body_text %}
+    {% autoescape false %}
+        <h3>{{ 'emails.confirmation.header' | trans }}</h3>
+
+        <p>{{ 'emails.confirmation.content.please_confirm' | trans }} <a href="{{ url('app_activate_filter', {'token': data.token}) }}">{{ url('app_activate_filter', {'token': data.token}) }}</a></p>
+
+        <p>{{ 'emails.confirmation.content.greetings' |trans }}</p>
+        <p>{{ 'emails.confirmation.content.team' |trans }}</p>
+    {% endautoescape %}
+{% endblock %}

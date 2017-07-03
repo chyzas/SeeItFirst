@@ -21,3 +21,11 @@ services:
          arguments: [~, AppBundle\Entity\Site, AppBundle:SiteAdmin]
          tags:
              - {name: sonata.admin, manager_type: orm, group: Admin, label: Site}
+
+     app.sqs_queue:
+         class: AppBundle\Services\Queue\Queue
+         arguments: ['@aws.sqs', '%aws_sqs_email_url%']
+
+     app.message_processor:
+        class: AppBundle\Services\Queue\MessageProcessor
+        arguments: ['@swiftmailer.mailer', '@templating']

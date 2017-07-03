@@ -26,6 +26,7 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new \Aws\Symfony\AwsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

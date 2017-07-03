@@ -67,6 +67,13 @@ class Filter
     protected $active;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="string", nullable=false)
+     */
+    protected $token;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Results", mappedBy="filter", cascade={"remove"})
      **/
     protected $results;
@@ -75,7 +82,7 @@ class Filter
     {
         $this->results = new ArrayCollection();
         $this->setCreatedAt(new \DateTime());
-        $this->setActive(true);
+        $this->setActive(false);
     }
 
     /**
@@ -256,5 +263,21 @@ class Filter
     public function setActive($active)
     {
         $this->active = $active;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     */
+    public function setToken(string $token)
+    {
+        $this->token = $token;
     }
 }

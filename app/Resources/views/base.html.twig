@@ -1,48 +1,11 @@
 {% extends 'master.html.twig' %}
 
-{% block header %}
-    <div class="container">
-        <div class="row">
-            <div class="header">
-                <ul>
-                    {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
-                        <li><a href="{{ path('filter')}}">{{ 'main.filters'|trans }}</a></li>
-                        <li><a href="{{ path('fos_user_profile_show')}}">{{ 'main.profile'|trans }}</a></li>
-                        <li><a href="{{ path('fos_user_security_logout')}}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
-                    {% else %}
-                        <button type="button" class="btn sif-button hvr-glow" data-toggle="modal" data-target="#myModal">
-                            {{ 'layout.login'|trans({}, 'FOSUserBundle') }}
-                        </button>
-                    {% endif %}
-                </ul>
-            </div>
-        </div>
-    </div>
-{% endblock %}
-
 {% block main %}
     <div class="container">
         <div class="row">
             <div>
                 <div class="col-xs-4 col-xs-offset-4">
                     {% include '@App/flash_messages.html.twig' %}
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            {{ include('@App/Security/login_form.html.twig') }}
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
