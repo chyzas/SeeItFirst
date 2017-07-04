@@ -30,17 +30,19 @@ errors:
     filter:
         not_found: Toks filtras neegzistuoja
     narrow_search: Susiaurinkite paiešką. Skelbimų kiekis: %count%, leidžiama < %threshold%
-emails:
+email:
+    greeting: Jūsų,
+    team: Skelbimų seklys komanda
+    header: Sveiki
     confirmation:
         subject: Patvirtinimas
-        header: Sveiki!
         content:
             your_password: Jūsų slaptažodis:
             please_confirm: Prašom paspausti paskyros patvirtinimo nuorodą
-            greetings: Jūsų,
-            team: SeeItFirst komanda
     filter_confirmation:
-        subject: Filtro %name% patvirtinimas
+        message: Norint gauti naujausius skelbimus, filtrą reikia aktyvuoti.
+        activate: Aktyvuoti filtrą
+        subject: Filtro "%name%" aktyvavimas
 
 login:
   no_acount: Neturite paskyros?

@@ -1,10 +1,20 @@
-{% block body_text %}
-    {% autoescape false %}
-        <h3>{{ 'emails.confirmation.header' | trans }}</h3>
+{% extends 'AppBundle:Emails:template.html.twig' %}
 
-        <p>{{ 'emails.confirmation.content.please_confirm' | trans }} <a href="{{ url('app_activate_filter', {'token': data.token}) }}">{{ url('app_activate_filter', {'token': data.token}) }}</a></p>
-
-        <p>{{ 'emails.confirmation.content.greetings' |trans }}</p>
-        <p>{{ 'emails.confirmation.content.team' |trans }}</p>
-    {% endautoescape %}
+{% block body %}
+        <p>{{ 'email.filter_confirmation.message'|trans }}</p>
+        <table border="0" cellpadding="0" cellspacing="0" class="btn btn-primary">
+                <tbody>
+                <tr>
+                        <td align="left">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                        <tbody>
+                                        <tr>
+                                                <td> <a href="{{ url('app_activate_filter', {'token': data.token}) }}" target="_blank">{{ 'email.filter_confirmation.activate'|trans }}</a> </td>
+                                        </tr>
+                                        </tbody>
+                                </table>
+                        </td>
+                </tr>
+                </tbody>
+        </table>
 {% endblock %}

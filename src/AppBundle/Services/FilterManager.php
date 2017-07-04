@@ -98,7 +98,7 @@ class FilterManager
 
         $this->queue->send(
             [
-                'subject' => $this->translator->trans('emails.filter_confirmation.subject', ['%name%' => $filter->getFilterName()]),
+                'subject' => $this->translator->trans('email.filter_confirmation.subject', ['%name%' => $filter->getFilterName()]),
                 'email' => $user->getEmail(),
                 'template' => 'confirm_filter',
                 'data' => [
