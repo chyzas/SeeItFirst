@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @Assert\Callback(methods={"checkFilter"})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="FilterRepository")
  * @ORM\Table(name="filter")
  * @UniqueEntity(fields={"site", "url"})})
  */
@@ -72,6 +72,13 @@ class Filter
      * @ORM\Column(name="token", type="string", nullable=false)
      */
     protected $token;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="deactivation_token", type="string", nullable=false)
+     */
+    protected $deactivationToken;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Results", mappedBy="filter", cascade={"remove"})
@@ -279,5 +286,21 @@ class Filter
     public function setToken(string $token)
     {
         $this->token = $token;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDeactivationToken()
+    {
+        return $this->deactivationToken;
+    }
+
+    /**
+     * @param mixed $deactivationToken
+     */
+    public function setDeactivationToken($deactivationToken)
+    {
+        $this->deactivationToken = $deactivationToken;
     }
 }

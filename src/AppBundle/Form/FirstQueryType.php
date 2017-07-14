@@ -16,21 +16,29 @@ class FirstQueryType extends AbstractType
         $builder
             ->add('url', 'text', [
                 'label' => 'filter_form.query_url',
-                'attr' => ['class' => 'form-control'],
-                'label_attr' => ['class' => 'col-sm-2 control-label']
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'filter_form.query_url'
+                ],
+                'label_attr' => ['class' => 'col-sm-2 control-label'],
             ])
             ->add('name', 'text', [
                 'label' => 'filter_form.query_name',
-                'attr' => ['class' => 'form-control'],
-                'label_attr' => ['class' => 'col-sm-2 control-label']
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'filter_form.query_name'
+                ],
+                'label_attr' => ['class' => 'col-sm-2 control-label'],
             ])
             ->add('email', 'email', [
                 'label' => 'main.email',
-                'attr' => ['class' => 'form-control'],
-                'label_attr' => ['class' => 'col-sm-2 control-label']
+                'attr' => [
+                    'class' => 'form-control',
+                    'placeholder' => 'main.email'
+                ],
+                'label_attr' => ['class' => 'col-sm-2 control-label'],
             ])
-            ->add('save', 'submit', array('label' => 'main.save', 'attr' => array('class'=>'btn-default')))
-        ;
+            ->add('save', 'submit', array('label' => 'main.save', 'attr' => array('class' => 'btn-default')));
     }
 
     /**

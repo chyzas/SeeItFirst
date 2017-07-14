@@ -90,8 +90,9 @@ class FilterManager
         $filter->setSite($site);
         $filter->setUrl($url);
         $filter->setFilterName($name);
-        $token = bin2hex(openssl_random_pseudo_bytes(16));
+        $token = $this->generateToken();
         $filter->setToken($token);
+        $filter->setDeactivationToken($this->generateToken());
 
         $this->entityManager->persist($filter);
         $this->entityManager->flush();
@@ -138,5 +139,13 @@ class FilterManager
         }
 
         return false;
+    }
+
+    /**
+     * @return string
+     */
+    private function generateToken(): string
+    {
+        return bin2hex(openssl_random_pseudo_bytes(16));
     }
 }

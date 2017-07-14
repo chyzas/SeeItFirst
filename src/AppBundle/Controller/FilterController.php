@@ -48,6 +48,32 @@ class FilterController extends Controller
     }
 
     /**
+     * @param $token
+     * @return Response
+     */
+    public function deactivateAction($token)
+    {
+        if (!$token) {
+            return new Response($this->get('translator')->trans('errors.page_not_found'), Response::HTTP_BAD_REQUEST);
+        }
+
+        $em = $this->get('doctrine.orm.default_entity_manager');
+        /** @var Filter $filter */
+        $repo = $em->getRepository('AppBundle:Filter');
+        $filter = $repo->findOneBy(['deactivationToken' => $token]);
+
+        if (!$filter) {
+            return new Response($this->get('translator')->trans('errors.page_not_found'), Response::HTTP_BAD_REQUEST);
+        }
+
+        $filter->setActive(false);
+        $em->persist($filter);
+        $em->flush();
+
+        return new Response('Success');
+    }
+
+    /**
      * Lists all user filters.
      *
      */

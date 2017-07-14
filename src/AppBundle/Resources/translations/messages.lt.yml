@@ -1,6 +1,7 @@
 main:
     title: Pamatyk Pirmas!
-    message: Lengviausias būdas pamatyti naujausius skelbimus pirmam!
+    message1: Nori kažką nusipirkti? Atsibodo kas kartą naršyti po skelbimo portalus?
+    message2: Atsifiltruok skelbimus ir nukopijuok nuorodą, užpildęs formą ir patvirtinęs pradėsi gauti naujus skelbimus iš karto!
     email: E-mail
     save: Išsaugoti
     home: Pradžia
@@ -31,9 +32,12 @@ errors:
         not_found: Toks filtras neegzistuoja
     narrow_search: Susiaurinkite paiešką. Skelbimų kiekis: %count%, leidžiama < %threshold%
 email:
+    filter_name: Užklausa
+    result_link: Nuoroda
     greeting: Jūsų,
     team: Skelbimų seklys komanda
     header: Sveiki
+    unsuscribe: Atsisakyti
     confirmation:
         subject: Patvirtinimas
         content:
@@ -43,6 +47,8 @@ email:
         message: Norint gauti naujausius skelbimus, filtrą reikia aktyvuoti.
         activate: Aktyvuoti filtrą
         subject: Filtro "%name%" aktyvavimas
+    results:
+        header: Naujausi skelbimai!
 
 login:
   no_acount: Neturite paskyros?
@@ -79,7 +85,7 @@ profile:
 results:
     price: Kaina
     title: Pavadinimas
-    link: Adresas
+    link: Nuoroda
     added_at: Pridėta
     status: Statusas
     new: Naujas

@@ -1,5 +1,31 @@
 body {
-   background: linear-gradient(to left, #0AC977, #0AB1C9)
+    background-color: #4D343D;
+    color: white;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+body, html {
+    height: 100%;
+}
+
+
+.filter-form input {
+    background-color: transparent;
+    color: #fff;
+}
+
+.filter-form input:focus {
+    border-color: #fff;
+}
+
+.list-style {
+    display: inline-block;
+    padding: 0;
+}
+
+.inline {
+    display: inline;
 }
 
 .header ul {
@@ -13,15 +39,16 @@ body {
     display: inline;
 }
 
+.content {
+    left: 50%;
+    /*transform: translate(-50%,-50%);*/
+}
+
 .header li a {
     color: white;
     padding: 8px;
 }
 
-.pageSection {
-    min-height: 600px;
-    color: whitesmoke;
-}
 
 #first_query_save,  #_submit {
     background-color: #FF6E32;
@@ -42,16 +69,8 @@ body {
     margin-top: 20px;
 }
 
-.content {
-    margin-left: 13px;
-}
-
-.available-sites {
-    text-align: right;
-}
-
-.modal {
-    text-align: center;
+.available-sites a{
+    color: white;
 }
 
 .sif-white {
@@ -95,11 +114,79 @@ body {
     }
 }
 
-.modal-dialog {
-    display: inline-block;
-    text-align: left;
-    vertical-align: middle;
+
+@media screen and (max-width: 768px) {
+    .content {
+        height: 90%;
+        display: flex;
+        align-items: center;
+    }
+
+    .header {
+        text-align: center;
+        margin-top: 40px;
+    }
+    .message {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
+        margin-left: 25px;
+        margin-right: 25px;
+    }
+
+    .available-sites {
+        margin-top: 40px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .filter-form, .flash {
+        margin-left: 23px;
+        margin-right: 23px;
+    }
+
+    .flash {
+        margin-left: -7px;
+        margin-right: -7px;
+    }
 }
+
+@media screen and (max-width: 320px) {
+    .content {
+        height: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .header {
+        text-align: center;
+        margin-top: 15px;
+    }
+    .message {
+        text-align: center;
+        margin-top: 15px;
+        font-size: 16px;
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .available-sites {
+        margin-top: 30px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .filter-form, .flash {
+        margin-left: 23px;
+        margin-right: 23px;
+    }
+
+    .flash {
+        margin-left: -7px;
+        margin-right: -7px;
+    }
+}
+
 
 .sif-button {
     background-color: #FF6E32;
@@ -107,28 +194,3 @@ body {
     color: whitesmoke;
 }
 
-.center {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: auto;
-    margin-top: auto;
-}
-
-
-@media (min-width: 1200px) {
-    .content {
-        margin-left: 210px;
-        margin-top: 50px;
-    }
-}
-
-@media (max-width: 767px) {
-    .available-sites {
-        text-align: left;
-    }
-}
-
-.help-icon {
-    margin-top: 7px;
-}

@@ -160,6 +160,13 @@
             color: #ffffff; }
 
         /* -------------------------------------
+            LINKS
+        ------------------------------------- */
+        .no-decoration {
+            text-decoration: none;
+        }
+
+        /* -------------------------------------
             OTHER STYLES THAT MIGHT BE USEFUL
         ------------------------------------- */
         .last {
@@ -277,7 +284,9 @@
             <div class="content">
 
                 <!-- START CENTERED WHITE CONTAINER -->
-                <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+                {% block preheader %}
+                    <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
+                {% endblock %}
                 <table class="main">
 
                     <!-- START MAIN CONTENT AREA -->
@@ -285,10 +294,11 @@
                         <td class="wrapper">
                             <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
-                                    <td>
-                                        <p>{{ 'email.header'|trans }},</p>
+                                    <td class="wrapper">
+                                        {% block header %}{% endblock %}
                                         {% block body %}{% endblock %}
-                                        <p>{{ 'email.greeting'|trans }}</p>
+
+                                        <p style="padding-top: 25px">{{ 'email.greeting'|trans }}</p>
                                         <p>{{ 'email.team'|trans }}</p>
                                     </td>
                                 </tr>

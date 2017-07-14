@@ -1,61 +1,54 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <div class="page-wrap">
-            <section class="pageSection">
-                <div class="container">
-                    <div class="row">
-                        <div class="content mb2">
-                            <h1>{{ 'main.title' | trans }}</h1>
-                            <small>
-                                {{ 'main.message' | trans }}
-                            </small>
-                        </div>
-                    </div>
-                    <div class="row mt2">
-                        <div class="col-sm-2 available-sites">
-                            {{ 'filter_form.available_sites' | trans }}
-                        </div>
-                        <div class="col-sm-8">
-                            <ul class="list-inline">
-                                {% for site in urls %}
-                                    <li>{{ site.siteUrl }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="filter-form">
-                        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-                            <div class="form-group">
-                                {{ form_label(form.url) }}
-                                <div class="col-sm-8">
-                                    {{ form_widget(form.url) }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                {{ form_label(form.name) }}
-                                <div class="col-sm-8">
-                                    {{ form_widget(form.name) }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                {{ form_label(form.email) }}
-                                <div class="col-sm-8">
-                                    {{ form_widget(form.email) }}
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-8">
-                                    {{ form_widget(form.save) }}
-                                </div>
-                            </div>
-                        {{ form_end(form) }}
-                    </div>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <h1 class="header">{{ 'main.title' | trans }}</h1>
+                <div class="message">{{ 'main.message1' | trans }}</div>
+                <div class="message">{{ 'main.message2' | trans }}</div>
+            </div>
+            <div class="row available-sites">
+                {{ 'filter_form.available_sites' | trans }}:
+                <ul class="list-style">
+                    {% for site in urls %}
+                        <li class="inline"><a href="http://www.{{ site.siteUrl }}" target="_blank">{{ site.siteUrl }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="row flash">
+                <div class="col-sm-8">
+                    {% include '@App/flash_messages.html.twig' %}
                 </div>
-            </section>
+            </div>
+            <div class="row">
+                <div class="filter-form">
+                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            {{ form_widget(form.url) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            {{ form_widget(form.name) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            {{ form_widget(form.email) }}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-8">
+                            {{ form_widget(form.save) }}
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
         </div>
-    {% endif %}
+    </div>
 {% endblock %}
 {% block javascripts %}
 {{ parent() }}
