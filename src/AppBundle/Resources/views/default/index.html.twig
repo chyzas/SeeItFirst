@@ -9,42 +9,46 @@
                 <div class="message">{{ 'main.message2' | trans }}</div>
             </div>
             <div class="row available-sites">
+                <div class="col-sm-12">
                 {{ 'filter_form.available_sites' | trans }}:
                 <ul class="list-style">
                     {% for site in urls %}
                         <li class="inline"><a href="http://www.{{ site.siteUrl }}" target="_blank">{{ site.siteUrl }}</a></li>
                     {% endfor %}
                 </ul>
-            </div>
-            <div class="row flash">
-                <div class="col-sm-8">
-                    {% include '@App/flash_messages.html.twig' %}
                 </div>
             </div>
-            <div class="row">
-                <div class="filter-form">
-                    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-                    <div class="form-group">
-                        <div class="col-sm-8">
-                            {{ form_widget(form.url) }}
-                        </div>
+            <div class="form-content">
+                <div class="row flash">
+                    <div class="col-sm-12">
+                        {% include '@App/flash_messages.html.twig' %}
                     </div>
-                    <div class="form-group">
-                        <div class="col-sm-8">
-                            {{ form_widget(form.name) }}
+                </div>
+                <div class="row">
+                    <div class="filter-form">
+                        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                {{ form_widget(form.url) }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-8">
-                            {{ form_widget(form.email) }}
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                {{ form_widget(form.name) }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-8">
-                            {{ form_widget(form.save) }}
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                {{ form_widget(form.email) }}
+                            </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                {{ form_widget(form.save) }}
+                            </div>
+                        </div>
+                        {{ form_end(form) }}
                     </div>
-                    {{ form_end(form) }}
                 </div>
             </div>
         </div>
