@@ -4,9 +4,11 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                <h1 class="header">{{ 'main.title' | trans }}</h1>
-                <div class="message">{{ 'main.message1' | trans }}</div>
-                <div class="message">{{ 'main.message2' | trans }}</div>
+                <div class="col-sm-12">
+                    <h1 class="header">{{ 'main.title' | trans }}</h1>
+                    <div class="message message-first">{{ 'main.message1' | trans }}</div>
+                    <div class="message">{{ 'main.message2' | trans }}</div>
+                </div>
             </div>
             <div class="row available-sites">
                 <div class="col-sm-12">
@@ -25,30 +27,33 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="filter-form">
-                        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                {{ form_widget(form.url) }}
+                    <div class="col-sm-12">
+                        <div class="filter-form">
+                            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.url) }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                {{ form_widget(form.name) }}
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.name) }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                {{ form_widget(form.email) }}
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.email) }}
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-12">
-                                {{ form_widget(form.save) }}
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    {{ form_widget(form.save) }}
+                                </div>
                             </div>
+                            {{ form_end(form) }}
                         </div>
-                        {{ form_end(form) }}
                     </div>
+
                 </div>
             </div>
         </div>

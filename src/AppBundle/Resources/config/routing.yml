@@ -53,3 +53,7 @@ confirmation:
 app_activate_filter:
   path: /filter/activate/{token}
   defaults: { _controller: AppBundle:Filter:activateFilter }
+
+app_deactivate_filter:
+  path: /filter/deactivate/{token}
+  defaults: { _controller: AppBundle:Filter:deactivate }
