@@ -81,6 +81,7 @@ a:focus {
     color: whitesmoke;
     border-color: #FF6E32;
     width: 150px;
+    /*display: none;*/
 }
 
 .grey-black {
@@ -135,3 +136,49 @@ a:focus {
     color: whitesmoke;
 }
 
+/**********************************************************
+* Form submit link
+**********************************************************/
+
+.submit-links ul {
+    list-style-type: none;
+}
+
+.submit-links {
+    text-align: center;
+}
+.submit-links a {
+    text-decoration: none;
+    -moz-transition: border-color 0.2s ease-in-out;
+    -webkit-transition: border-color 0.2s ease-in-out;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.submit-links a:hover {
+    border-color: transparent;
+    font-size: 1.1em;
+}
+
+.submit-links li {
+    transform: translate3d(0,0,0);
+    display: inline-block;
+    height: 5.35em;
+    width: 5.35em;
+    line-height: 5.885em;
+    position: relative;
+}
+
+.submit-links a:before {
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    border-radius: 100%;
+    border: solid 1px #fff;
+    font-size: 1.75em;
+    color: #fff;
+    height: 2.5em;
+    display: block;
+    line-height: 2.5em;
+    text-align: center;
+    width: 2.5em;
+}

@@ -32,6 +32,7 @@ class FirstQueryType extends AbstractType
             ])
             ->add('email', 'email', [
                 'label' => 'main.email',
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'main.email'
