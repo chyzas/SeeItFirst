@@ -38,8 +38,7 @@ class FirstQueryType extends AbstractType
                     'placeholder' => 'main.email'
                 ],
                 'label_attr' => ['class' => 'col-sm-2 control-label'],
-            ])
-            ->add('save', 'submit', array('label' => 'main.save', 'attr' => array('class' => 'btn-default')));
+            ]);
     }
 
     /**

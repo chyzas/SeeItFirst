@@ -31,6 +31,7 @@ errors:
     filter:
         not_found: Toks filtras neegzistuoja
     narrow_search: Susiaurinkite paiešką. Skelbimų kiekis: %count%, leidžiama < %threshold%
+    bad_request: Bloga nuoroda, patikrinkite ar puslapis veikia
 email:
     filter_name: Užklausa
     result_link: Nuoroda

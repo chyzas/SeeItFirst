@@ -143,8 +143,8 @@ aws:
     version: latest
     region: eu-west-1
     credentials:
-        key: AKIAJMZZXRG5SGXTXAVA
-        secret: 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 # this will be escaped as '@not-a-real-secret'
+        key: "%aws_key%"
+        secret: "%aws_secret%"
     Sqs:
         credentials: "@a_service"
 
