@@ -4,12 +4,25 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Site;
 use AppBundle\Form\FirstQueryType;
+use AppBundle\Services\Queue\Message;
+use GuzzleHttp\Exception\ClientException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+
+    public function testAction()
+    {
+        $queue = $this->get('app.sqs_queue');
+            /** @var Message $message */
+        $message = $queue->receive();
+        $body = $message->getBody();
+        return $this->render('@App/Emails/results.html.twig', ['data' => $body->getData()]);
+    }
+
+
     public function indexAction(Request $request): Response
     {
         $form = $this->createForm(new FirstQueryType());
@@ -41,9 +54,13 @@ class DefaultController extends Controller
             $em->getConnection()->commit();
 
             $this->addFlash('success', $this->get('translator')->trans('registration.flash.confirm_filter', ['%email%' => $user->getEmail()]));
-        } catch (\Exception $e) {
+        } catch (ClientException $e) {
             $em->getConnection()->rollBack();
-            $this->addFlash('danger', $this->get('translator')->trans($e->getMessage()));
+            $this->addFlash('danger', $this->get('translator')->trans('errors.bad_request'));
+        }
+        catch (\Exception $e) {
+            $em->getConnection()->rollBack();
+            $this->addFlash('danger', $e->getMessage());
         }
 
         return $this->render('AppBundle:default:index.html.twig', [
