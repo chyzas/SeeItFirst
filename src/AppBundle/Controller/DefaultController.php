@@ -54,6 +54,8 @@ class DefaultController extends Controller
             $em->getConnection()->commit();
 
             $this->addFlash('success', $this->get('translator')->trans('registration.flash.confirm_filter', ['%email%' => $user->getEmail()]));
+
+
         } catch (ClientException $e) {
             $em->getConnection()->rollBack();
             $this->addFlash('danger', $this->get('translator')->trans('errors.bad_request'));
@@ -64,7 +66,7 @@ class DefaultController extends Controller
         }
 
         return $this->render('AppBundle:default:index.html.twig', [
-            'form' => $form->createView(),
+            'form' => $this->createForm(new FirstQueryType())->createView(),
             'urls' => $this->getAvailableUrls()
         ]);
     }
