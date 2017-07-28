@@ -29,7 +29,6 @@ class WorkerCommand extends ContainerAwareCommand
                     $queue->delete($message);
                     $command = $this->getApplication()->find('swiftmailer:spool:send');
                     $command->run($input, $output);
-                    $queue->delete($message);
                 } catch (\Exception $e) {
 
                     $queue->delete($message);
