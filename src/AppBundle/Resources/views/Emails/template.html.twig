@@ -283,10 +283,10 @@
         <td class="container">
             <div class="content">
 
-                <!-- START CENTERED WHITE CONTAINER -->
-                {% block preheader %}
-                    <span class="preheader">This is preheader text. Some clients will show this text as a preview.</span>
-                {% endblock %}
+                <span class="preheader">
+                    {% block preheader %}{% endblock %}
+                </span>
+
                 <table class="main">
 
                     <!-- START MAIN CONTENT AREA -->
@@ -324,7 +324,6 @@
                 <!-- END CENTERED WHITE CONTAINER -->
             </div>
         </td>
-        <td>&nbsp;</td>
     </tr>
 </table>
 </body>
