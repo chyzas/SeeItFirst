@@ -45,6 +45,11 @@ sif_home_page:
   path: /
   defaults: { _controller: AppBundle:Default:index }
 
+sif_submit:
+  path: /submit
+  methods: ['POST']
+  defaults: { _controller: AppBundle:Default:submit }
+
 
 confirmation:
   path: /confirm/{token}

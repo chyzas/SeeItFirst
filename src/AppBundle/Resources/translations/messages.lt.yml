@@ -32,6 +32,8 @@ errors:
         not_found: Toks filtras neegzistuoja
     narrow_search: Susiaurinkite paiešką. Skelbimų kiekis: %count%, leidžiama < %threshold%
     bad_request: Bloga nuoroda, patikrinkite ar puslapis veikia
+    something_went_wrong: Kažkas negerai, bandykite dar kartą.
+    fill_missing_fields: Užpildykite trūkstamus laukus.
 email:
     filter_name: Užklausa
     result_link: Nuoroda

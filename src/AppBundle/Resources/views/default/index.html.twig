@@ -23,7 +23,10 @@
             <div class="form-content">
                 <div class="row flash">
                     <div class="col-sm-12">
-                        {% include '@App/flash_messages.html.twig' %}
+                        <div id="alert-placeholder">
+
+                        </div>
+                        {#{% include '@App/flash_messages.html.twig' %}#}
                     </div>
                 </div>
                 <div class="row">
@@ -105,18 +108,33 @@
                 });
             }
 
+            var route = "{{ path('sif_submit')|escape('js') }}";
+
             $('.fa-envelope-o').click(function() {
-                $( ".form-horizontal" ).submit();
+                const postData = {
+                    email: email.val(),
+                    url: url.val(),
+                    name: name.val()
+                };
+                if ($("form[name='first_query']").valid()) {
+                    $.post(route, postData, function (data) {
+                        bootstrapAlert('success', data.message);
+                        email.val('');
+                        url.val('');
+                        name.val('');
+                        nameGroup.hide();
+                        emailGroup.hide();
+                        animation = true;
+
+                    }).fail(function (data) {
+                        bootstrapAlert('danger', data.responseJSON.message)
+                    })
+                }
             });
 
-            $('.fa-facebook').click(function() {
-                $.ajax({
-                    url: "https://www.facebook.com/dialog/oauth?response_type=code&client_id=156240931598627&scope=email++public_profile&redirect_uri=http://localhost:8000/login/check-facebook?myExtraParameter=abc",
-                    success: function(result) {
-                        $("#div1").html(result);
-                    }
-                });
-            });
+            function bootstrapAlert(type, message) {
+                $('#alert-placeholder').html('<div class="alert alert-'+type+' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+message+'</div>')
+            }
         });
     </script>
 
