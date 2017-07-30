@@ -138,4 +138,19 @@ knp_paginator:
         distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
     template:
         pagination: 'KnpPaginatorBundle:Pagination:sliding.html.twig'     # sliding pagination controls template
-#        sortable: 'KnpPaginatorBundle:Pagination:sortable_link.html.twig' # sort link template
+
+aws:
+    version: latest
+    region: eu-west-1
+    credentials:
+        key: "%aws_key%"
+        secret: "%aws_secret%"
+    Sqs:
+        credentials: "@a_service"
+
+services:
+    a_service:
+        class: Aws\Credentials\Credentials
+        arguments:
+            - "%aws_key%"
+            - "%aws_secret%"

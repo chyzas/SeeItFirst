@@ -22,3 +22,8 @@ parameters:
     # facebook id
     facebook_app_id: '%env.facebook.id%'
     facebook_app_secret: '%env.facebook.secret%'
+
+    #aws
+    aws_key: '%env.aws.key%'
+    aws_secret: '%env.aws.secret%'
+    aws_sqs_email_url: '%env.sqs.email_url%'

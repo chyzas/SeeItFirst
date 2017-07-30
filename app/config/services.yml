@@ -8,7 +8,7 @@ services:
         class: AppBundle\Services\FilterValidatorService
     filter_manager:
         class: AppBundle\Services\FilterManager
-        arguments: ["@doctrine.orm.default_entity_manager", "@translator", "@url_validator"]
+        arguments: ["@doctrine.orm.default_entity_manager", "@translator", "@url_validator", '@app.sqs_queue']
 
     mail:
         class: AppBundle\Services\Mail

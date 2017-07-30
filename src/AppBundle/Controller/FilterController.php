@@ -3,12 +3,15 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Site;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMInvalidArgumentException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Filter;
 use AppBundle\Form\FirstQueryType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Filter controller.
@@ -16,6 +19,60 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class FilterController extends Controller
 {
+    /**
+     * @Route("/filter/activate/{token}", name="app_activate_filter")
+     * @throws \InvalidArgumentException
+     * @throws OptimisticLockException
+     * @throws ORMInvalidArgumentException
+     */
+    public function activateFilterAction($token)
+    {
+        if (!$token) {
+            return new Response($this->get('translator')->trans('errors.page_not_found'), Response::HTTP_BAD_REQUEST);
+        }
+
+        $em = $this->get('doctrine.orm.default_entity_manager');
+        /** @var Filter $filter */
+        $repo = $em->getRepository('AppBundle:Filter');
+        $filter = $repo->findOneBy(['token' => $token]);
+
+        if (!$filter) {
+            return new Response($this->get('translator')->trans('errors.page_not_found'), Response::HTTP_BAD_REQUEST);
+        }
+
+        $filter->setActive(true);
+        $em->persist($filter);
+        $em->flush();
+
+        return new Response('Success');
+    }
+
+    /**
+     * @param $token
+     * @return Response
+     */
+    public function deactivateAction($token)
+    {
+        if (!$token) {
+            return new Response($this->get('translator')->trans('errors.page_not_found'), Response::HTTP_BAD_REQUEST);
+        }
+
+        $em = $this->get('doctrine.orm.default_entity_manager');
+        /** @var Filter $filter */
+        $repo = $em->getRepository('AppBundle:Filter');
+        $filter = $repo->findOneBy(['deactivationToken' => $token]);
+
+        if (!$filter) {
+            return new Response($this->get('translator')->trans('errors.page_not_found'), Response::HTTP_BAD_REQUEST);
+        }
+
+        $filter->setActive(false);
+        $em->persist($filter);
+        $em->flush();
+
+        return new Response('Success');
+    }
+
     /**
      * Lists all user filters.
      *

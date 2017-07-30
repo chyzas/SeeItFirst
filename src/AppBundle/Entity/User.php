@@ -158,7 +158,7 @@ class User extends BaseUser
     /**
      * @return int
      */
-    public function getAvailableFilterCount(): int
+    public function getAvailableFilterCount()
     {
         return $this->availableFilterCount;
     }
@@ -166,7 +166,7 @@ class User extends BaseUser
     /**
      * @param int $availableFilterCount
      */
-    public function setAvailableFilterCount(int $availableFilterCount)
+    public function setAvailableFilterCount($availableFilterCount)
     {
         $this->availableFilterCount = $availableFilterCount;
     }

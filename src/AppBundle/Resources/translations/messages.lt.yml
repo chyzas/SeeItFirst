@@ -1,6 +1,7 @@
 main:
     title: Pamatyk Pirmas!
-    message: Lengviausias būdas pamatyti naujausius skelbimus pirmam!
+    message1: Nori kažką nusipirkti? Atsibodo kas kartą naršyti po skelbimo portalus?
+    message2: Atfiltruok skelbimą, nukopijuok nuorodą, užpildyk formą ir patvirtinęs pradėsi gauti naujus skelbimus iš karto!
     email: E-mail
     save: Išsaugoti
     home: Pradžia
@@ -30,15 +31,28 @@ errors:
     filter:
         not_found: Toks filtras neegzistuoja
     narrow_search: Susiaurinkite paiešką. Skelbimų kiekis: %count%, leidžiama < %threshold%
-emails:
+    bad_request: Bloga nuoroda, patikrinkite ar puslapis veikia
+    something_went_wrong: Kažkas negerai, bandykite dar kartą.
+    fill_missing_fields: Užpildykite trūkstamus laukus.
+email:
+    filter_name: Užklausa
+    result_link: Nuoroda
+    greeting: Jūsų,
+    team: Skelbimų seklys komanda
+    header: Sveiki
+    unsuscribe: Atsisakyti
     confirmation:
         subject: Patvirtinimas
-        header: Sveiki!
         content:
             your_password: Jūsų slaptažodis:
             please_confirm: Prašom paspausti paskyros patvirtinimo nuorodą
-            greetings: Jūsų,
-            team: SeeItFirst komanda
+    filter_confirmation:
+        message: Norint gauti naujausius skelbimus, filtrą reikia aktyvuoti.
+        activate: Aktyvuoti filtrą
+        subject: Filtro "%name%" aktyvavimas
+    results:
+        header: Naujausi skelbimai!
+
 login:
   no_acount: Neturite paskyros?
   register: Užsiregistruokite čia!
@@ -57,7 +71,9 @@ registration:
   title: Registracija
   flash:
     user_created: Vartotojas sukurtas!
+    confirm_filter: Buvo išsiųstas el. paštas adresu %email%. Jame rasite nuorodą kurią aplankę aktyvuosite filtrą.
   check_email: Buvo išsiųstas el. paštas adresu %email%. Jame rasite nuorodą kurią aplankę aktyvuosite savo paskyrą.
+
 
 resetting:
   title: Slaptažodžio atstatymas
@@ -71,10 +87,11 @@ profile:
 
 results:
     price: Kaina
-    title: Pavadinimas
-    link: Adresas
+    title: Antraštė
+    link: Nuoroda
     added_at: Pridėta
     status: Statusas
     new: Naujas
     old: Senas
     count: Rezultatų kiekis
+    details: Detaliau

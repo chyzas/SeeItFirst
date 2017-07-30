@@ -1,0 +1,18 @@
+{#{% extends 'master.html.twig' %}#}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div>
+                <div class="col-xs-4 col-xs-offset-4">
+                    {% include '@App/flash_messages.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% block body %} {% endblock %}
+        </div>
+    </div>
+{% endblock %}

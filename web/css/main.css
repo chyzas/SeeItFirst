@@ -1,5 +1,54 @@
+/**********************************************************
+* General
+**********************************************************/
+
 body {
-   background: linear-gradient(to left, #0AC977, #0AB1C9)
+    font-family: 'Open sans', helvetica, arial, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    background-color: #4D343D;
+    color: white;
+}
+
+a {
+    text-decoration: underline;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+.content {
+    margin-top: 7em;
+}
+
+/**********************************************************
+* General
+**********************************************************/
+
+.filter-form input {
+    background-color: transparent;
+    color: #fff;
+}
+
+.filter-form input:focus {
+    border-color: #fff;
+}
+
+.list-style {
+    display: inline-block;
+    padding: 0;
+}
+
+.inline {
+    display: inline;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 1em;
+    letter-spacing: -1px;
 }
 
 .header ul {
@@ -18,16 +67,13 @@ body {
     padding: 8px;
 }
 
-.pageSection {
-    min-height: 600px;
-    color: whitesmoke;
+.message {
+    margin-bottom: 1em;
 }
 
-#first_query_save,  #_submit {
-    background-color: #FF6E32;
-    color: whitesmoke;
-    border-color: #FF6E32;
-    width: 150px;
+.message.message-first {
+    text-align: center;
+    font-size: 18px;
 }
 
 .grey-black {
@@ -42,17 +88,6 @@ body {
     margin-top: 20px;
 }
 
-.content {
-    margin-left: 13px;
-}
-
-.available-sites {
-    text-align: right;
-}
-
-.modal {
-    text-align: center;
-}
 
 .sif-white {
     color: whitesmoke;
@@ -86,20 +121,6 @@ body {
     right: 0;
 }
 
-@media screen and (min-width: 768px) {
-    .modal:before {
-        display: inline-block;
-        vertical-align: middle;
-        content: " ";
-        height: 100%;
-    }
-}
-
-.modal-dialog {
-    display: inline-block;
-    text-align: left;
-    vertical-align: middle;
-}
 
 .sif-button {
     background-color: #FF6E32;
@@ -107,28 +128,49 @@ body {
     color: whitesmoke;
 }
 
-.center {
+/**********************************************************
+* Form submit link
+**********************************************************/
+
+.submit-links ul {
+    list-style-type: none;
+}
+
+.submit-links {
     text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: auto;
-    margin-top: auto;
+}
+.submit-links a {
+    text-decoration: none;
+    -moz-transition: border-color 0.2s ease-in-out;
+    -webkit-transition: border-color 0.2s ease-in-out;
+    transition: border-color 0.2s ease-in-out;
 }
 
-
-@media (min-width: 1200px) {
-    .content {
-        margin-left: 210px;
-        margin-top: 50px;
-    }
+.submit-links a:hover {
+    border-color: transparent;
+    font-size: 1.1em;
 }
 
-@media (max-width: 767px) {
-    .available-sites {
-        text-align: left;
-    }
+.submit-links li {
+    transform: translate3d(0,0,0);
+    display: inline-block;
+    height: 5.35em;
+    width: 5.35em;
+    line-height: 5.885em;
+    position: relative;
 }
 
-.help-icon {
-    margin-top: 7px;
+.submit-links a:before {
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    border-radius: 100%;
+    border: solid 1px #fff;
+    font-size: 1.75em;
+    color: #fff;
+    height: 2.5em;
+    display: block;
+    line-height: 2.5em;
+    text-align: center;
+    width: 2.5em;
 }

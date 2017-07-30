@@ -1,61 +1,72 @@
 {% extends "::base.html.twig" %}
 
 {% block body %}
-    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-        <div class="page-wrap">
-            <section class="pageSection">
-                <div class="container">
-                    <div class="row">
-                        <div class="content mb2">
-                            <h1>{{ 'main.title' | trans }}</h1>
-                            <small>
-                                {{ 'main.message' | trans }}
-                            </small>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1 class="header">{{ 'main.title' | trans }}</h1>
+                    <div class="message message-first">{{ 'main.message1' | trans }}</div>
+                    <div class="message">{{ 'main.message2' | trans }}</div>
+                </div>
+            </div>
+            <div class="row available-sites">
+                <div class="col-sm-12">
+                {{ 'filter_form.available_sites' | trans }}:
+                <ul class="list-style">
+                    {% for site in urls %}
+                        <li class="inline"><a href="http://www.{{ site.siteUrl }}" target="_blank">{{ site.siteUrl }}</a></li>
+                    {% endfor %}
+                </ul>
+                </div>
+            </div>
+            <div class="form-content">
+                <div class="row flash">
+                    <div class="col-sm-12">
+                        <div id="alert-placeholder">
+
                         </div>
+                        {#{% include '@App/flash_messages.html.twig' %}#}
                     </div>
-                    <div class="row mt2">
-                        <div class="col-sm-2 available-sites">
-                            {{ 'filter_form.available_sites' | trans }}
-                        </div>
-                        <div class="col-sm-8">
-                            <ul class="list-inline">
-                                {% for site in urls %}
-                                    <li>{{ site.siteUrl }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="filter-form">
-                        {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="filter-form">
+                            {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
                             <div class="form-group">
-                                {{ form_label(form.url) }}
-                                <div class="col-sm-8">
+                                <div class="col-sm-12">
                                     {{ form_widget(form.url) }}
                                 </div>
                             </div>
                             <div class="form-group">
-                                {{ form_label(form.name) }}
-                                <div class="col-sm-8">
+                                <div class="col-sm-12">
                                     {{ form_widget(form.name) }}
                                 </div>
                             </div>
                             <div class="form-group">
-                                {{ form_label(form.email) }}
-                                <div class="col-sm-8">
+                                <div class="col-sm-12">
                                     {{ form_widget(form.email) }}
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="col-sm-offset-2 col-sm-8">
-                                    {{ form_widget(form.save) }}
-                                </div>
-                            </div>
-                        {{ form_end(form) }}
+                            {{ form_end(form) }}
+                        </div>
                     </div>
                 </div>
-            </section>
+                <div class="row">
+                    <div class="col-sm-12 submit-links">
+                        <ul>
+                            <li>
+                                <a href="#" class="fa fa-envelope-o"></a>
+                            </li>
+                            {#<li>#}
+                                {#<a href="#" class="fa fa-facebook"></a>#}
+                            {#</li>#}
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
-    {% endif %}
+    </div>
 {% endblock %}
 {% block javascripts %}
 {{ parent() }}
@@ -96,6 +107,35 @@
                 }, 500, function() {
                 });
             }
+
+            var route = "{{ path('sif_submit')|escape('js') }}";
+
+            $('.fa-envelope-o').click(function() {
+                const postData = {
+                    email: email.val(),
+                    url: url.val(),
+                    name: name.val()
+                };
+                if ($("form[name='first_query']").valid()) {
+                    $.post(route, postData, function (data) {
+                        bootstrapAlert('success', data.message);
+                        email.val('');
+                        url.val('');
+                        name.val('');
+                        nameGroup.hide();
+                        emailGroup.hide();
+                        animation = true;
+
+                    }).fail(function (data) {
+                        bootstrapAlert('danger', data.responseJSON.message)
+                    })
+                }
+            });
+
+            function bootstrapAlert(type, message) {
+                $('#alert-placeholder').html('<div class="alert alert-'+type+' alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>'+message+'</div>')
+            }
         });
     </script>
+
 {% endblock %}
