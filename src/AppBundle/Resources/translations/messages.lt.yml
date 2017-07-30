@@ -87,10 +87,11 @@ profile:
 
 results:
     price: Kaina
-    title: Pavadinimas
+    title: Antraštė
     link: Nuoroda
     added_at: Pridėta
     status: Statusas
     new: Naujas
     old: Senas
     count: Rezultatų kiekis
+    details: Detaliau

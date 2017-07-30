@@ -1,34 +1,65 @@
 {% extends 'AppBundle:Emails:template.html.twig' %}
 
+{% block preheader %}
+    {% set firstFilter = data|first %}
+    {{ firstFilter['items'][0]['title'] }} - {{ firstFilter['items'][0]['price'] }}
+{% endblock %}
+
 {% block header %}
     <h2 class="align-center">{{ 'email.results.header'|trans }}</h2>
 {% endblock %}
 
 {% block body %}
-    <table style="border-spacing: 0">
+    {% set dataCount =  data|length %}
+    {% set key = 0 %}
+    <table style="border-spacing: 0; width: 100%">
         <tbody>
             {% for item in data %}
-                <tr>
-                    <td colspan="2" class="align-left" style="padding-bottom: 10px; padding-top: 10px">{{ 'email.filter_name'|trans }}: <strong>{{ item['filter_name'] }}</strong></td>
-                    <td class="align-rigt" style="padding-bottom: 10px; padding-top: 10px"><a class="no-decoration" href="{{ path('app_deactivate_filter', {'token': item['deactivation_token']}) }}">{{ 'email.unsuscribe'|trans }}</a></td>
+                {% set key  = key + 1 %}
+                <tr class="filter-name">
+                    <td>{{ item['filter_name']|upper }}</td>
                 </tr>
-                <tr style="background-color: #FAFAFA">
-                    <th style="line-height: 30px">{{ 'results.title'|trans }}</th>
-                    <th>{{ 'results.link'|trans }}</th>
-                    <th>{{ 'results.price'|trans }}</th>
-                </tr>
+                <tr class="spacer"><td></td></tr>
+
                 {% for result in item['items'] %}
-                    <tr>
-                        <td>{{ result['title'] }}</td>
-                        <td class="align-center"><a class="no-decoration" href="{{ result['url'] }}">{{ 'email.result_link'|trans }}</a></td>
-                        <td class="align-right"><b style="color: red">{{ result['price'] }}</b></td>
-                    </tr>
-                    <tr>
-                        <td style="border-bottom: 1px solid #ddd; padding-bottom: 10px" colspan="3">
-                            <b>{{ result['details'] }}</b>
+                    <tr class="section">
+                        <td style="
+                            padding: 0 15px;
+                            border: 1px solid #ededed;
+                            border-radius: 3px;
+                            overflow: hidden;">
+                            <table class="info" border="0" cellpadding="0" cellspacing="0">
+                                <tbody>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #ededed;" class="col-name">{{ 'results.title'|trans }}</td>
+                                        <td style="border-bottom: 1px solid #ededed;" class="col-content">{{ result['title'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #ededed;" class="col-name">{{ 'results.link'|trans }}</td>
+                                        <td style="border-bottom: 1px solid #ededed;" class="col-content"><a class="no-decoration" href="{{ result['url'] }}">{{ 'email.result_link'|trans }}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border-bottom: 1px solid #ededed;" class="col-name">{{ 'results.price'|trans }}</td>
+                                        <td style="border-bottom: 1px solid #ededed;" class="col-content" style="color: red">{{ result['price'] }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="col-name">{{ 'results.details'|trans }}</td>
+                                        <td class="col-content">{{ result['details'] }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </td>
                     </tr>
+                    <tr class="spacer"><td></td></tr>
                 {% endfor %}
+                    <tr>
+                        <td class="cancel-filter"><a class="no-decoration" href="{{ path('app_deactivate_filter', {'token': item['deactivation_token']}) }}">{{ 'email.unsuscribe'|trans }}</a></td>
+                    </tr>
+            {% if dataCount == key+1 %}
+                <tr><td style="border-bottom: 2px solid black; height: 5px"></td></tr>
+                <tr class="spacer"><td></td></tr>
+                <tr class="spacer"><td></td></tr>
+            {% endif %}
             {% endfor %}
         </tbody>
     </table>
