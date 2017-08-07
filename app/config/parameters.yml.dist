@@ -26,4 +26,4 @@ parameters:
     #aws
     aws_key: '%env.aws.key%'
     aws_secret: '%env.aws.secret%'
-    aws_sqs_email_url: '%env.sqs.email_url%'
+    aws_sqs_emailurl: '%env.sqs.emailurl%'
