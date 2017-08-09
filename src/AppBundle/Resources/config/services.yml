@@ -24,7 +24,7 @@ services:
 
      app.sqs_queue:
          class: AppBundle\Services\Queue\Queue
-         arguments: ['@aws.sqs', '%aws_sqs_email_url%']
+         arguments: ['@aws.sqs', '%aws_sqs_emailurl%']
 
      app.message_processor:
         class: AppBundle\Services\Queue\MessageProcessor
