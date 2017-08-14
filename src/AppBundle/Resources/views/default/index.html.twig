@@ -127,7 +127,10 @@
                         animation = true;
 
                     }).fail(function (data) {
-                        bootstrapAlert('danger', data.responseJSON.message)
+                        if (data.hasOwnProperty('responseJSON')) {
+                            bootstrapAlert('danger', data.responseJSON.message)
+                        }
+                        bootstrapAlert('danger', 'Kažkas negerai. Bandykite dar kartą.')
                     })
                 }
             });
