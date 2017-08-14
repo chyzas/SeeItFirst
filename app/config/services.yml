@@ -17,3 +17,9 @@ services:
     user_service:
         class: AppBundle\Services\UserService
         arguments: ["@fos_user.user_manager", "@fos_user.util.token_generator"]
+
+    app.exception_listiner:
+        class: AppBundle\EventListener\ExceptionListener
+        arguments: ['@monolog.logger.exceptions', '@translator.default']
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, priority: 1 }

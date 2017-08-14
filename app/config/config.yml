@@ -154,3 +154,11 @@ services:
         arguments:
             - "%aws_key%"
             - "%aws_secret%"
+
+monolog:
+    channels: ['exceptions']
+    handlers:
+        exceptions:
+            type: stream
+            path: '%kernel.logs_dir%/exceptions.log'
+            channels: [exceptions]
