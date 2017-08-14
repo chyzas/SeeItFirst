@@ -16,12 +16,11 @@ class Queue
     /**
      * @var string
      */
-    private $url;
+    private $url = 'https://sqs.eu-central-1.amazonaws.com/370545604689/email';
 
-    public function __construct(SqsClient $client, string $url)
+    public function __construct(SqsClient $client)
     {
         $this->client = $client;
-        $this->url = $url;
     }
 
     /**
