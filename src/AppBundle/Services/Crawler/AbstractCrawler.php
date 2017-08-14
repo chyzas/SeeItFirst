@@ -4,6 +4,7 @@ namespace AppBundle\Services\Crawler;
 
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Handler\StreamHandler;
 use Symfony\Component\DomCrawler\Crawler;
 
 abstract class AbstractCrawler
@@ -17,7 +18,8 @@ abstract class AbstractCrawler
      */
     public function getCount($url)
     {
-        $client = new Client();
+        $handler = new StreamHandler();
+        $client = new Client(['handler' => $handler]);
         $html = $client->request('GET', $url)->getBody()->getContents();
 
         $crawler = new Crawler($html);
