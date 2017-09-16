@@ -76,17 +76,17 @@ class FilterManager
             throw new Exception($this->translator->trans('errors.duplicate_url'));
         }
 
-        $adsCount = $this->urlValidatorService->getAdsCount($site->getSiteUrl(), $url);
-
-        if ($adsCount > self::MAX_ADS_QTY) {
-            throw new \RuntimeException($this->translator->trans(
-                'errors.narrow_search',
-                [
-                    '%count%' => $adsCount,
-                    '%threshold%' => self::MAX_ADS_QTY,
-                ]
-            ));
-        }
+//        $adsCount = $this->urlValidatorService->getAdsCount($site->getSiteUrl(), $url);
+//
+//        if ($adsCount > self::MAX_ADS_QTY) {
+//            throw new \RuntimeException($this->translator->trans(
+//                'errors.narrow_search',
+//                [
+//                    '%count%' => $adsCount,
+//                    '%threshold%' => self::MAX_ADS_QTY,
+//                ]
+//            ));
+//        }
         $filter->setSite($site);
         $filter->setUrl($url);
         $filter->setFilterName($name);
@@ -144,7 +144,7 @@ class FilterManager
     /**
      * @return string
      */
-    private function generateToken(): string
+    private function generateToken()
     {
         return bin2hex(openssl_random_pseudo_bytes(16));
     }
