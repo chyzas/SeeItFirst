@@ -17,13 +17,11 @@ class LoadSitesData implements FixtureInterface
         $skelbiu->setName('skelbiu');
         $skelbiu->setSiteUrl('skelbiu.lt');
         $manager->persist($skelbiu);
-        $manager->flush();
 
         $autoplius = new Site();
         $autoplius->setName('autoplius');
         $autoplius->setSiteUrl('autoplius.lt');
         $manager->persist($autoplius);
-        $manager->flush();
 
         $aruodas = new Site();
         $aruodas->setName('aruodas');
