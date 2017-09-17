@@ -22,6 +22,10 @@ class Message
         $this->receiptHandler = $receiptHandler;
     }
 
+    public function raw()
+    {
+        return $this->body;
+    }
 
     public function getBody(): MessageBody
     {
@@ -41,5 +45,10 @@ class Message
     public function getReceiptHandler(): string
     {
         return $this->receiptHandler;
+    }
+
+    public function __toString()
+    {
+        return $this->body;
     }
 }

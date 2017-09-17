@@ -19,22 +19,18 @@ class WorkerCommand extends ContainerAwareCommand
         $queue = $this->getContainer()->get('app.sqs_queue');
         $msgProcessor = $this->getContainer()->get('app.message_processor');
         $output->writeln('starting');
-        while (true) {
-            /** @var Message $message */
-            $message = $queue->receive();
+        /** @var Message $message */
+        $message = $queue->receive();
 
-            if ($message) {
-                try {
-                    $msgProcessor->process($message);
-                    $queue->delete($message);
-                    $command = $this->getApplication()->find('swiftmailer:spool:send');
-                    $command->run($input, $output);
-                } catch (\Exception $e) {
-
-                    $queue->delete($message);
-                }
-            } else {
-                sleep(1);
+        if ($message) {
+            try {
+                $msgProcessor->process($message);
+                $queue->delete($message);
+                $command = $this->getApplication()->find('swiftmailer:spool:send');
+                $command->run($input, $output);
+            } catch (\Exception $e) {
+                $output->writeln('Error: ' . $message->raw());
+                $queue->delete($message);
             }
         }
     }
