@@ -26,3 +26,5 @@ parameters:
     #aws
     aws_key: '%env.aws.key%'
     aws_secret: '%env.aws.secret%'
+
+    base_url: 'http://www.skelbimuseklys.lt'

@@ -53,7 +53,7 @@
                     <tr class="spacer"><td></td></tr>
                 {% endfor %}
                     <tr>
-                        <td class="cancel-filter"><a class="no-decoration" href="{{ path('app_deactivate_filter', {'token': item['deactivation_token']}) }}">{{ 'email.unsuscribe'|trans }}</a></td>
+                        <td class="cancel-filter"><a class="no-decoration" href="{{ base_url ~ path('app_deactivate_filter', {'token': item['deactivation_token']}) }}">{{ 'email.unsuscribe'|trans }}</a></td>
                     </tr>
             {% if dataCount == key+1 %}
                 <tr><td style="border-bottom: 2px solid black; height: 5px"></td></tr>
