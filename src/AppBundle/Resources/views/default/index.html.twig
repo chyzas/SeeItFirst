@@ -129,8 +129,9 @@
                     }).fail(function (data) {
                         if (data.hasOwnProperty('responseJSON')) {
                             bootstrapAlert('danger', data.responseJSON.message)
+                        } else {
+                            bootstrapAlert('danger', 'Kažkas negerai. Bandykite dar kartą.')
                         }
-                        bootstrapAlert('danger', 'Kažkas negerai. Bandykite dar kartą.')
                     })
                 }
             });
