@@ -39,6 +39,7 @@ twig:
         fos_csrf_provider: "@security.csrf.token_manager"
     form:
         resources: ['bootstrap_3_layout.html.twig']
+    cache:  false
 
 # Assetic Configuration
 assetic:
