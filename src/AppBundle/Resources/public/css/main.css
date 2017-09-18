@@ -2,16 +2,16 @@
 * General
 **********************************************************/
 
-
 body {
     font-family: 'Open sans', helvetica, arial, sans-serif;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     color: white;
-    background: url('/bundles/app/images/clean.jpg');
-    background-size:     cover;
-    background-repeat:   no-repeat;
-    background-position: center center;
+    background: url('/bundles/app/images/clean.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 a {
@@ -24,7 +24,7 @@ a:focus {
 }
 
 .content {
-    margin-top: 7em;
+    margin-top: 15em;
 }
 
 .list-style {
