@@ -1,0 +1,87 @@
+/**********************************************************
+* General
+**********************************************************/
+
+
+body {
+    font-family: 'Open sans', helvetica, arial, sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    color: white;
+    background: url('/bundles/app/images/clean.jpg');
+    background-size:     cover;
+    background-repeat:   no-repeat;
+    background-position: center center;
+}
+
+a {
+    text-decoration: underline;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+.content {
+    margin-top: 7em;
+}
+
+.list-style {
+    display: inline-block;
+    padding: 0;
+}
+
+.inline {
+    display: inline;
+}
+
+.available-sites {
+    color: black;
+    font-size: 18px;
+}
+
+.message {
+    margin-top: 25px;
+    font-size: 22px;
+}
+
+.header {
+    font-size: 40px;
+    line-height: 60px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.big-form {
+    background-color: #fff;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    padding: 40px;
+}
+
+input {
+    padding: 10px 15px;
+    width: 100%;
+    color: #282828;
+    transition: all 0.333s;
+}
+
+.big-form .input-field {
+    margin-bottom: 30px;
+}
+
+.big-form label {
+    color: black;
+}
+
+button {
+    width: 100%;
+    background-color: #1cbac8;
+    box-shadow: 0 10px 40px rgba(28, 186, 200, 0.2);
+    border: 0;
+    text-transform: uppercase;
+    padding: 15px 30px;
+    letter-spacing: 2px;
+    font-size: 14px;
+}

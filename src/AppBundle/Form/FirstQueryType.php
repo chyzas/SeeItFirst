@@ -17,27 +17,21 @@ class FirstQueryType extends AbstractType
             ->add('url', 'text', [
                 'label' => 'filter_form.query_url',
                 'attr' => [
-                    'class' => 'form-control',
                     'placeholder' => 'filter_form.query_url'
                 ],
-                'label_attr' => ['class' => 'col-sm-2 control-label'],
             ])
             ->add('name', 'text', [
                 'label' => 'filter_form.query_name',
                 'attr' => [
-                    'class' => 'form-control',
                     'placeholder' => 'filter_form.query_name'
                 ],
-                'label_attr' => ['class' => 'col-sm-2 control-label'],
             ])
             ->add('email', 'email', [
                 'label' => 'main.email',
                 'required' => false,
                 'attr' => [
-                    'class' => 'form-control',
                     'placeholder' => 'main.email'
                 ],
-                'label_attr' => ['class' => 'col-sm-2 control-label'],
             ]);
     }
 
