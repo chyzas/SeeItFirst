@@ -85,3 +85,25 @@ button {
     letter-spacing: 2px;
     font-size: 14px;
 }
+
+@media screen and (max-width: 991px) {
+    .content {
+        margin-top: 5em;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .content {
+        margin-top: 1em;
+    }
+
+    .header {
+        font-size: 30px;
+        line-height: 30px;
+    }
+
+    .message {
+        margin-top: 15px;
+        font-size: 17px;
+    }
+}
