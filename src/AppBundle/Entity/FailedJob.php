@@ -20,14 +20,14 @@ class FailedJob
     /**
      * @var string
      *
-     * @ORM\Column(name="payload", type="string")
+     * @ORM\Column(name="payload", type="text")
      */
     private $payload;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="excepion", type="string")
+     * @ORM\Column(name="excepion", type="text")
      */
     private $excepion;
 

@@ -44,6 +44,7 @@ class MessageProcessor
             $this->mailer->send($mail);
         } catch (\Exception $e) {
             $logger->error($e->getMessage());
+            throw new \Exception($e->getMessage());
         }
     }
 }
