@@ -30,6 +30,10 @@ class WorkerCommand extends ContainerAwareCommand
                 $command->run($input, $output);
             } catch (\Exception $e) {
                 $output->writeln('Error: ' . $message->raw());
+                $this->getContainer()->get('app.repository.failed_job')->log(
+                    $message->raw(),
+                    $e
+                );
                 $queue->delete($message);
             }
         }

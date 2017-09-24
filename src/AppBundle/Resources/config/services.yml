@@ -1,5 +1,6 @@
 parameters:
     my_user_provider.class: AppBundle\Security\Core\User\FOSUBUserProvider
+    entity.failed_job: "AppBundle:FailedJob"
 
 services:
      my_user_provider:
@@ -29,3 +30,8 @@ services:
      app.message_processor:
         class: AppBundle\Services\Queue\MessageProcessor
         arguments: ['@swiftmailer.mailer', '@templating']
+
+     app.repository.failed_job:
+        class: AppBundle\Repository\FailedJobRepository
+        factory: ["@doctrine", getRepository]
+        arguments: ['%entity.failed_job%']
