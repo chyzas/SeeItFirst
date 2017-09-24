@@ -41,7 +41,7 @@ class UserService
         $user->setEmail($email);
         $user->setUsername($email);
         $user->setUsernameCanonical($email);
-        $user->setEnabled(false);
+        $user->setEnabled(true);
         $user->setPlainPassword($password);
         $user->setConfirmationToken(substr($this->tokenGenerator->generateToken(), 0, 7));
         $user->setTempPlainPassword($password);
