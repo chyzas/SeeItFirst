@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @Assert\Callback(methods={"checkFilter"})
- * @ORM\Entity(repositoryClass="FilterRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\FilterRepository")
  * @ORM\Table(name="filter")
  * @UniqueEntity(fields={"site", "url"})})
  */
@@ -50,7 +50,7 @@ class Filter
      * @ORM\Column(name="filter_name", type="string", nullable=false)
      * @Assert\NotBlank()
      */
-    protected $filterName;
+    protected $name;
 
     /**
      * @var \DateTime
@@ -128,10 +128,10 @@ class Filter
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param User $user
      * @return Filter
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(User $user = null)
     {
         $this->user = $user;
 
@@ -141,7 +141,7 @@ class Filter
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User 
+     * @return User
      */
     public function getUser()
     {
@@ -151,10 +151,10 @@ class Filter
     /**
      * Set site
      *
-     * @param \AppBundle\Entity\Site $site
+     * @param Site $site
      * @return Filter
      */
-    public function setSite(\AppBundle\Entity\Site $site = null)
+    public function setSite(Site $site = null)
     {
         $this->site = $site;
 
@@ -164,7 +164,7 @@ class Filter
     /**
      * Get site
      *
-     * @return \AppBundle\Entity\Site 
+     * @return Site
      */
     public function getSite()
     {
@@ -174,10 +174,10 @@ class Filter
     /**
      * Add results
      *
-     * @param \AppBundle\Entity\Results $results
+     * @param Results $results
      * @return Filter
      */
-    public function addResult(\AppBundle\Entity\Results $results)
+    public function addResult(Results $results)
     {
         $this->results[] = $results;
 
@@ -187,9 +187,9 @@ class Filter
     /**
      * Remove results
      *
-     * @param \AppBundle\Entity\Results $results
+     * @param Results $results
      */
-    public function removeResult(\AppBundle\Entity\Results $results)
+    public function removeResult(Results $results)
     {
         $this->results->removeElement($results);
     }
@@ -220,12 +220,12 @@ class Filter
     /**
      * Set filterName
      *
-     * @param string $filterName
+     * @param string $name
      * @return Filter
      */
-    public function setFilterName($filterName)
+    public function setName($name)
     {
-        $this->filterName = $filterName;
+        $this->name = $name;
 
         return $this;
     }
@@ -235,9 +235,9 @@ class Filter
      *
      * @return string 
      */
-    public function getFilterName()
+    public function getName()
     {
-        return $this->filterName;
+        return $this->name;
     }
 
     /**

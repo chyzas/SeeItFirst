@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\ResultsRepository")
  * @ORM\Table(name="results")
  */
 class Results
@@ -57,6 +57,20 @@ class Results
      * @ORM\JoinColumn(name="filter_id", referencedColumnName="id", onDelete="SET NULL", nullable=true)
      **/
     private $filter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="item_id", type="text")
+     */
+    private $itemId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="details", type="text", nullable=true)
+     */
+    private $details;
 
     /**
      * Get id
@@ -186,10 +200,10 @@ class Results
     /**
      * Set filter
      *
-     * @param \AppBundle\Entity\Filter $filter
+     * @param Filter $filter
      * @return Results
      */
-    public function setFilter(\AppBundle\Entity\Filter $filter = null)
+    public function setFilter(Filter $filter = null)
     {
         $this->filter = $filter;
 
@@ -199,10 +213,42 @@ class Results
     /**
      * Get filter
      *
-     * @return \AppBundle\Entity\Filter 
+     * @return Filter
      */
     public function getFilter()
     {
         return $this->filter;
+    }
+
+    /**
+     * @return string
+     */
+    public function getItemId(): string
+    {
+        return $this->itemId;
+    }
+
+    /**
+     * @param string $itemId
+     */
+    public function setItemId(string $itemId)
+    {
+        $this->itemId = $itemId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDetails(): string
+    {
+        return $this->details;
+    }
+
+    /**
+     * @param string $details
+     */
+    public function setDetails(string $details)
+    {
+        $this->details = $details;
     }
 }

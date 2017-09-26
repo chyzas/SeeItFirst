@@ -3,35 +3,41 @@ parameters:
     entity.failed_job: "AppBundle:FailedJob"
 
 services:
-     my_user_provider:
-          class: "%my_user_provider.class%"
-          #this is the place where the properties are passed to the UserProvider - see config.yml
-          arguments: [@fos_user.user_manager,{facebook: facebook_id}]
+    my_user_provider:
+        class: "%my_user_provider.class%"
+        #this is the place where the properties are passed to the UserProvider - see config.yml
+        arguments: [@fos_user.user_manager,{facebook: facebook_id}]
 
-     app.admin.user:
-         class: AppBundle\Admin\UserAdmin
-         arguments:
-             - ~
-             - AppBundle\Entity\User
-             - AppBundle:UserAdmin
-         tags:
-             - { name: sonata.admin, manager_type: orm, group: Admin, label: User }
+    app.admin.user:
+       class: AppBundle\Admin\UserAdmin
+       arguments:
+           - ~
+           - AppBundle\Entity\User
+           - AppBundle:UserAdmin
+       tags:
+           - { name: sonata.admin, manager_type: orm, group: Admin, label: User }
 
-     app.admin.site:
-         class: AppBundle\Admin\SiteAdmin
-         arguments: [~, AppBundle\Entity\Site, AppBundle:SiteAdmin]
-         tags:
-             - {name: sonata.admin, manager_type: orm, group: Admin, label: Site}
+    app.admin.site:
+       class: AppBundle\Admin\SiteAdmin
+       arguments: [~, AppBundle\Entity\Site, AppBundle:SiteAdmin]
+       tags:
+           - {name: sonata.admin, manager_type: orm, group: Admin, label: Site}
 
-     app.sqs_queue:
-         class: AppBundle\Services\Queue\Queue
-         arguments: ['@aws.sqs']
+    app.sqs_queue:
+       class: AppBundle\Services\Queue\Queue
+       arguments: ['@aws.sqs']
 
-     app.message_processor:
-        class: AppBundle\Services\Queue\MessageProcessor
-        arguments: ['@swiftmailer.mailer', '@templating']
+    app.data_factory:
+          class: AppBundle\Services\DataManagerFactory
+          arguments: ['@doctrine.orm.default_entity_manager']
 
-     app.repository.failed_job:
-        class: AppBundle\Repository\FailedJobRepository
-        factory: ["@doctrine", getRepository]
-        arguments: ['%entity.failed_job%']
+    app.message_processor:
+      class: AppBundle\Services\Queue\MessageProcessor
+      arguments: ['@swiftmailer.mailer', '@templating', '@app.data_factory']
+
+
+    app.repository.failed_job:
+      class: AppBundle\Repository\FailedJobRepository
+      factory: ["@doctrine", getRepository]
+      arguments: ['%entity.failed_job%']
+

@@ -89,7 +89,7 @@ class FilterManager
 //        }
         $filter->setSite($site);
         $filter->setUrl($url);
-        $filter->setFilterName($name);
+        $filter->setName($name);
         $token = $this->generateToken();
         $filter->setToken($token);
         $filter->setDeactivationToken($this->generateToken());
@@ -99,7 +99,7 @@ class FilterManager
 
         $this->queue->send(
             [
-                'subject' => $this->translator->trans('email.filter_confirmation.subject', ['%name%' => $filter->getFilterName()]),
+                'subject' => $this->translator->trans('email.filter_confirmation.subject', ['%name%' => $filter->getName()]),
                 'email' => $user->getEmail(),
                 'template' => 'confirm_filter',
                 'data' => [

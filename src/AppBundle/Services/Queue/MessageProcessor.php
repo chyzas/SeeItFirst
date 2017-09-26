@@ -3,6 +3,7 @@
 namespace AppBundle\Services\Queue;
 
 use AppBundle\Model\MessageBody;
+use AppBundle\Services\DataManagerFactory;
 use Monolog\Logger;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 
@@ -18,10 +19,16 @@ class MessageProcessor
      */
     private $engine;
 
-    public function __construct(\Swift_Mailer $mailer, TwigEngine $engine)
+    /**
+     * @var DataManagerFactory
+     */
+    private $dataManager;
+
+    public function __construct(\Swift_Mailer $mailer, TwigEngine $engine, DataManagerFactory $dataManager)
     {
         $this->mailer = $mailer;
         $this->engine = $engine;
+        $this->dataManager = $dataManager;
     }
 
     public function process(Message $message)
@@ -37,7 +44,7 @@ class MessageProcessor
                 ->setBody(
                     $this->engine->render(
                         'AppBundle:Emails:'.$body->getTemplate().'.html.twig',
-                        ['data' => $body->getData()]
+                        ['data' => $this->dataManager->get($body->getTemplate(), $body->getData())->getData()]
                     ),
                     'text/html'
                 );
