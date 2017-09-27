@@ -62,3 +62,7 @@ app_activate_filter:
 app_deactivate_filter:
   path: /filter/deactivate/{token}
   defaults: { _controller: AppBundle:Filter:deactivate }
+
+app_test:
+  path: /test
+  defaults: { _controller: AppBundle:TestResults:test}

@@ -44,6 +44,12 @@
                                     <td class="col-name">{{ 'results.details'|trans }}</td>
                                     <td class="col-content">{{ result.details }}</td>
                                 </tr>
+                                {% if result.image %}
+                                    <tr>
+                                        <td class="col-name">{{ 'results.image'|trans }}</td>
+                                        <td><img src="{{ 'data:image/jpg;base64,' ~ result.image }}"></td>
+                                    </tr>
+                                {% endif %}
                             </tbody>
                         </table>
                     </td>

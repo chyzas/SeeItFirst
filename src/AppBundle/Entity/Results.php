@@ -73,6 +73,13 @@ class Results
     private $details;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="image", type="text", nullable=true)
+     */
+    private $image;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -250,5 +257,21 @@ class Results
     public function setDetails(string $details)
     {
         $this->details = $details;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage(): string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string $image
+     */
+    public function setImage(string $image)
+    {
+        $this->image = $image;
     }
 }
